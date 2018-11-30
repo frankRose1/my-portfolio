@@ -1,12 +1,15 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
-  "description": "My portfolio refactor",
+  "description": "My portfolio refactored",
   "main": "server.js",
   "scripts": {
     "server": "nodemon server.js"
   },
-  "keywords": [],
+  "keywords": [
+    "GraphQL",
+    "Node"
+  ],
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.0.0-rc.7",

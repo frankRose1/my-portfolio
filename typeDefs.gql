@@ -1,0 +1,29 @@
+type Admin {
+  _id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+}
+
+type Project {
+  _id: ID! @unique
+  title: String!
+  dateAdded: String!
+  githubLink: String
+  demoLink: String
+  imageUrl: String
+  tags: [String]!
+}
+
+type Token {
+  token: String!
+}
+
+type Mutation {
+  signinAdmin(email: String!, password: String!): User
+  signupAdmin(name: String!, password: String!, email: String!): User
+}
+
+type Query {
+  sayHi: Token
+}
