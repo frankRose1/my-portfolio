@@ -1,12 +1,12 @@
 type Admin {
-  _id: ID! @unique
+  _id: ID!
   name: String!
-  email: String! @unique
+  email: String!
   password: String!
 }
 
 type Project {
-  _id: ID! @unique
+  _id: ID!
   title: String!
   dateAdded: String!
   githubLink: String
@@ -20,8 +20,15 @@ type Token {
 }
 
 type Mutation {
-  signinAdmin(email: String!, password: String!): User
-  signupAdmin(name: String!, password: String!, email: String!): User
+  signinAdmin(email: String!, password: String!): Token
+  signupAdmin(name: String!, password: String!, email: String!): Token
+  postProject(
+    title: String!
+    githubLink: String
+    demoLink: String
+    imageUrl: String
+    tags: [String!]!
+  ): Project!
 }
 
 type Query {

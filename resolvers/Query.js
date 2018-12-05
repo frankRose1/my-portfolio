@@ -1,5 +1,5 @@
 const Queries = {
-  sayhi(_, args, ctx) {
+  sayHi(_, args, ctx) {
     return { token: 'Testing' };
   }
 };
