@@ -1,6 +1,7 @@
 const Queries = {
-  sayHi(_, args, ctx) {
-    return { token: 'Testing' };
+  async fetchProjects(_, args, { Project }) {
+    const projects = await Project.find({});
+    return { projects };
   }
 };
 
