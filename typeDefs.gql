@@ -12,7 +12,13 @@ type Project {
   githubLink: String
   demoLink: String
   imageUrl: String
+  description: String!
   tags: [String]!
+}
+
+type ProjectsPage {
+  projects: [Project]
+  hasMore: Boolean!
 }
 
 type Token {
@@ -33,4 +39,6 @@ type Mutation {
 
 type Query {
   fetchProjects: [Project]!
+  getCurrentAdmin: Admin
+  infiniteScrollProjects(pageNum: Int!, pageSize: Int!): ProjectsPage!
 }

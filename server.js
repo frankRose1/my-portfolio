@@ -21,8 +21,7 @@ const Project = require('./models/Project');
 const getAdmin = async token => {
   if (token) {
     try {
-      const admin = await jwt.verify(token, process.env.APP_SECRET);
-      console.log(admin);
+      return await jwt.verify(token, process.env.APP_SECRET);
     } catch (err) {
       throw new AuthenticationError(
         'Your session has ended. Please sign in again'

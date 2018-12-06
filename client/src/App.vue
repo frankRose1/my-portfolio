@@ -3,7 +3,7 @@
 
     <!-- Side Nav -->
     <v-navigation-drawer app fixed temporary v-model="sideNav">
-      <v-toolbar color="accent" dark flat>
+      <v-toolbar color="secondary" dark flat>
         <v-toolbar-side-icon @click="toggleSideNav"></v-toolbar-side-icon>
         <router-link to="/" tag="span" style="cursor: pointer">
           <h1 class="title pl-3">FrankRosendorf</h1>
@@ -19,6 +19,14 @@
           </v-list-tile-action>
           <v-list-tile-content>{{item.title}}</v-list-tile-content>
         </v-list-tile>
+        <!-- signout button -->
+        <v-list-tile ripple v-if="admin" @click="handleSignoutAdmin">
+          <v-list-tile-action>
+            <v-icon>exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>Signout</v-list-tile-content>
+        </v-list-tile>
+
       </v-list>
     </v-navigation-drawer>
 
@@ -42,6 +50,12 @@
           <v-icon class="hidden-sm-only" left>{{item.icon}}</v-icon>
           {{item.title}}
         </v-btn>
+
+        <!-- signout btn -->
+        <v-btn v-if="admin" flat @click="handleSignoutAdmin">
+          <v-icon left class="hidden-sm-only">exit_to_app</v-icon>
+          Signout
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
@@ -58,6 +72,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
 export default {
   name: 'App',
   data(){
@@ -66,24 +81,36 @@ export default {
     }
   },
   computed: {
+    ...mapGetters(['admin']),
     horizontalNavItems() {
-      return [
-        {icon: 'lock_open', title: 'About', link: '/about'},
+      let items = [
+        {icon: 'account_box', title: 'About', link: '/about'},
         {icon: 'create', title: 'Projects', link: '/projects'},
         {icon: 'chat', title: 'Contact', link: '/contact'},
       ]
+      if(this.admin) {
+        items.push({icon: 'expand', title: 'Dashboard', link: '/admin/dashboard'});
+      }
+      return items;
     },
     sideNavItems() {
-      return [
-        {icon: 'lock_open', title: 'About', link: '/about'},
+      let items = [
+        {icon: 'account_box', title: 'About', link: '/about'},
         {icon: 'create', title: 'Projects', link: '/projects'},
         {icon: 'chat', title: 'Contact', link: '/contact'},
-      ]
+      ];
+      if (this.admin) {
+        items.push({icon: 'expand', title: 'Dashboard', link: '/admin/dashboard'});
+      }
+      return items;
     },
   },
   methods: {
     toggleSideNav(){
       this.sideNav = !this.sideNav;
+    },
+    handleSignoutAdmin(){
+      this.$store.dispatch('signoutAdmin');
     }
   }
 }

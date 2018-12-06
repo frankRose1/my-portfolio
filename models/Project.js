@@ -11,6 +11,11 @@ const ProjectSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  description: {
+    type: String,
+    trim: true,
+    required: 'Description is required!'
+  },
   githubLink: {
     type: String,
     trim: true

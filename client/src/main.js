@@ -7,13 +7,16 @@ import store from './store';
 
 import ApolloClient from 'apollo-boost';
 import VueApollo from 'vue-apollo';
+import FormAlert from './components/Shared/FormAlert.vue';
+
+//regsiter form alert globally
+Vue.component('form-alert', FormAlert);
 
 Vue.use(VueApollo);
 
-//export to be used in the store to fire off queries/mutations
+//export client to be used in the store to fire off queries/mutations
 export const defaultClient = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
-  //include auth token for admin tasks
   fetchOptions: {
     credentials: 'include'
   },
@@ -50,5 +53,9 @@ new Vue({
   provide: apolloProvider.provide(),
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created() {
+    //execute getCurrentAdmin when app is created
+    this.$store.dispatch('getCurrentAdmin');
+  }
 }).$mount('#app');

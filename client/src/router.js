@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './components/Home.vue';
+import ProtectedRoute from './ProtectedRoute';
 
-//TODO: set up protected routes
 //Admin
 import AddProject from './components/Admin/AddProject';
 import AdminSignin from './components/Admin/AdminSignin';
@@ -48,7 +48,8 @@ export default new Router({
     {
       path: '/admin/dashboard',
       name: 'AddProject',
-      component: AddProject
+      component: AddProject,
+      beforeEnter: ProtectedRoute
     }
   ]
 });
