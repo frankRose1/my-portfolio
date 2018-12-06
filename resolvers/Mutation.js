@@ -33,7 +33,7 @@ const Mutations = {
     //TODO: AUTHENTICATE THE USER
     const project = new Project({ ...args });
     await project.save();
-    return project;
+    return { ...project._doc, _id: project._id.toString() };
   }
 };
 

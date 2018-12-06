@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { defaultClient as apolloCiient } from './main';
-import { gql } from 'apollo-boost';
+import { FETCH_PROJECTS, SIGNIN_ADMIN } from './queries';
 
 Vue.use(Vuex);
 
@@ -11,35 +11,41 @@ export default new Vuex.Store({
     loading: false
   },
   mutations: {
-    setProjects(state, payload){
-      state.projects = payload 
+    setProjects(state, payload) {
+      state.projects = payload;
     },
-    setLoading(state, payload){
-      state.loading = payload
+    setLoading(state, payload) {
+      state.loading = payload;
     }
   },
   actions: {
     fetchProjects({ commit }) {
-      commit('setLoading', true)
+      commit('setLoading', true);
       apolloCiient
         .query({
-          query: gql`
-            query {
-              fetchProjects {
-                _id
-                imageUrl
-                title
-              }
-            }
-          `
+          query: FETCH_PROJECTS
         })
-        .then(({data}) => {
-          console.log(data)
+        .then(({ data }) => {
+          console.log(data);
           commit('setLoading', false);
-          commit('setProjects', data.fetchProjects)
+          commit('setProjects', data.fetchProjects);
         })
         .catch(err => {
           commit('setLoading', false);
+          console.log(err);
+        });
+    },
+    signinAdmin({ commit }, payload) {
+      apolloCiient
+        .mutate({
+          mutation: SIGNIN_ADMIN,
+          variables: payload
+        })
+        .then(({ data }) => {
+          localStorage.setItem('token', data.signinAdmin.token);
+          console.log(data);
+        })
+        .catch(err => {
           console.log(err);
         });
     }
