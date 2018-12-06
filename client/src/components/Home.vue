@@ -14,7 +14,7 @@
     <!-- Carousel -->
     <v-flex xs12>
       <v-carousel v-if="!loading && projects.length" v-bind="{'cycle': true}" interval="3000">
-        <v-carousel-item v-for="project in projects" :key="project._id" :src="project.imageUrl">
+        <v-carousel-item v-for="project in projects" :key="project._id" :src="project.imageUrl" @click.native="goToProject(project._id)">
           <h1 id="carousel__title">{{project.title}}</h1>
         </v-carousel-item>
       </v-carousel>
@@ -37,6 +37,9 @@ export default {
   methods: {
     handleFetchProjects(){
       this.$store.dispatch('fetchProjects');
+    },
+    goToProject(projectId){
+      this.$router.push(`/projects/${projectId}`);
     }
   }
 }

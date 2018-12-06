@@ -35,6 +35,13 @@ const Queries = {
         _id: proj._id.toString()
       }))
     };
+  },
+  async fetchProjectById(_, { projectId }, { Project }) {
+    const project = await Project.findById(projectId);
+    if (!project) {
+      throw new Error('No project found with that ID!');
+    }
+    return { ...project._doc, _id: project._id.toString() };
   }
 };
 

@@ -4,15 +4,15 @@ import Home from './components/Home.vue';
 import ProtectedRoute from './ProtectedRoute';
 
 //Admin
-import AddProject from './components/Admin/AddProject';
-import AdminSignin from './components/Admin/AdminSignin';
+import AddProject from './components/Admin/AddProject.vue';
+import AdminSignin from './components/Admin/AdminSignin.vue';
 
 //projects
-import Projects from './components/Projects/Projects';
-import Project from './components/Projects/Project';
+import Projects from './components/Projects/Projects.vue';
+import Project from './components/Projects/Project.vue';
 
 //contact
-import ContactForm from './components/Contact/ContactForm';
+import ContactForm from './components/Contact/ContactForm.vue';
 
 Vue.use(Router);
 
@@ -33,7 +33,8 @@ export default new Router({
     {
       path: '/projects/:projectId',
       name: 'Project',
-      component: Project
+      component: Project,
+      props: true
     },
     {
       path: '/contact',

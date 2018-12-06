@@ -11,14 +11,28 @@ export const FETCH_PROJECTS = gql`
   }
 `;
 
+export const FETCH_PROJECT_BY_ID = gql`
+  query($projectId: ID!) {
+    fetchProjectById(projectId: $projectId) {
+      _id
+      imageUrl
+      description
+      tags
+      title
+      dateAdded
+      githubLink
+      demoLink
+    }
+  }
+`;
+
 export const INFINITE_SCROLL_PROJECTS = gql`
   query($pageNum: Int!, $pageSize: Int!) {
     infiniteScrollProjects(pageNum: $pageNum, pageSize: $pageSize) {
       hasMore
-      posts {
+      projects {
         _id
         imageUrl
-        description
         title
         dateAdded
         githubLink

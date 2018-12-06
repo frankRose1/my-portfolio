@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import router from './router';
 import { defaultClient as apolloClient } from './main';
-import { FETCH_PROJECTS, SIGNIN_ADMIN, GET_CURRENT_ADMIN } from './queries';
+import { FETCH_PROJECTS, SIGNIN_ADMIN, GET_CURRENT_ADMIN, INFINITE_SCROLL_PROJECTS } from './queries';
 
 Vue.use(Vuex);
 
