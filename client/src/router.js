@@ -4,7 +4,7 @@ import Home from './components/Home.vue';
 import ProtectedRoute from './ProtectedRoute';
 
 //Admin
-import AddProject from './components/Admin/AddProject.vue';
+import AdminDashboard from './components/Admin/AdminDashboard.vue';
 import AdminSignin from './components/Admin/AdminSignin.vue';
 
 //projects
@@ -48,8 +48,8 @@ export default new Router({
     },
     {
       path: '/admin/dashboard',
-      name: 'AddProject',
-      component: AddProject,
+      name: 'AdminDashboard',
+      component: AdminDashboard,
       beforeEnter: ProtectedRoute
     }
   ]

@@ -2,7 +2,12 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import router from './router';
 import { defaultClient as apolloClient } from './main';
-import { FETCH_PROJECTS, SIGNIN_ADMIN, GET_CURRENT_ADMIN, INFINITE_SCROLL_PROJECTS } from './queries';
+import {
+  FETCH_PROJECTS,
+  SIGNIN_ADMIN,
+  GET_CURRENT_ADMIN,
+  POST_PROJECT
+} from './queries';
 
 Vue.use(Vuex);
 
@@ -27,7 +32,7 @@ export default new Vuex.Store({
     setFormError(state, payload) {
       state.formError = payload;
     },
-    clearFormError: state => (state.formError = null),
+    clearFormError: state => (state.formError = null)
   },
   actions: {
     fetchProjects({ commit }) {
@@ -37,13 +42,11 @@ export default new Vuex.Store({
           query: FETCH_PROJECTS
         })
         .then(({ data }) => {
-          console.log(data);
           commit('setLoading', false);
           commit('setProjects', data.fetchProjects);
         })
         .catch(err => {
           commit('setLoading', false);
-          console.log(err);
         });
     },
     signinAdmin({ commit }, payload) {
@@ -87,6 +90,23 @@ export default new Vuex.Store({
       //clear store and redirect off protected route
       await apolloClient.resetStore();
       router.push('/');
+    },
+    postProject({ commit }, payload) {
+      commit('clearFormError');
+      commit('setLoading', true);
+      apolloClient
+        .mutate({
+          mutation: POST_PROJECT,
+          variables: payload
+        })
+        .then(({ data }) => {
+          console.log(data);
+          commit('setLoading', false);
+        })
+        .catch(err => {
+          commit('setLoading', false);
+          commit('setFormError', err);
+        });
     }
   },
   getters: {

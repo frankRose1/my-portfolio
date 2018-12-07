@@ -64,3 +64,27 @@ export const SIGNIN_ADMIN = gql`
     }
   }
 `;
+
+export const POST_PROJECT = gql`
+  mutation(
+    $title: String!
+    $description: String!
+    $imageUrl: String!
+    $tags: [String!]!
+    $githubLink: String
+    $demoLink: String!
+  ) {
+    postProject(
+      title: $title
+      description: $description
+      tags: $tags
+      imageUrl: $imageUrl
+      githubLink: $githubLink
+      demoLink: $demoLink
+    ) {
+      _id
+      title
+      imageUrl
+    }
+  }
+`;
