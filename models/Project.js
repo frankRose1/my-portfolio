@@ -33,4 +33,9 @@ const ProjectSchema = new Schema({
   }
 });
 
+//index the fields being searched via search input
+ProjectSchema.index({
+  '$**': 'text'
+});
+
 module.exports = mongoose.model('Project', ProjectSchema);

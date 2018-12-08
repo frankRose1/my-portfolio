@@ -43,4 +43,5 @@ type Query {
   getCurrentAdmin: Admin
   infiniteScrollProjects(pageNum: Int!, pageSize: Int!): ProjectsPage!
   fetchProjectById(projectId: ID!): Project
+  searchProjects(searchTerm: String): [Project]!
 }

@@ -40,8 +40,9 @@
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
-
-      <v-text-field flex prepend-icon="search" placeholder="Search projects" hide-details single-line></v-text-field>
+      
+      <!-- Search Term -->
+      <v-text-field v-model="searchTerm" @input="handleSearchProjects" flex prepend-icon="search" placeholder="Search projects" hide-details single-line></v-text-field>
 
       <v-spacer></v-spacer>
       <!-- Horizontal nav items -->
@@ -77,7 +78,8 @@ export default {
   name: 'App',
   data(){
     return {
-      sideNav: false
+      sideNav: false,
+      searchTerm: ''
     }
   },
   computed: {
@@ -111,6 +113,11 @@ export default {
     },
     handleSignoutAdmin(){
       this.$store.dispatch('signoutAdmin');
+    },
+    handleSearchProjects(){
+      this.$store.dispatch('searchProjects', {
+        searchTerm: this.searchTerm
+      });
     }
   }
 }

@@ -42,6 +42,22 @@ const Queries = {
       throw new Error('No project found with that ID!');
     }
     return { ...project._doc, _id: project._id.toString() };
+  },
+  async searchProjects(_, { searchTerm }, { Project }) {
+    if (searchTerm) {
+      const searchResults = await Project.find(
+        //perform text search
+        { $text: { $search: searchProjects } },
+        // asign a score to searchTerm to find the best matching results
+        { score: { $meta: 'textScore' } }
+        //sort results by the textScore being projected to the results
+      )
+        .sort({
+          score: { $meta: 'textScore' }
+        })
+        .limit(5);
+      return searchResults;
+    }
   }
 };
 

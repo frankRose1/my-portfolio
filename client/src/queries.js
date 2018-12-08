@@ -43,6 +43,17 @@ export const INFINITE_SCROLL_PROJECTS = gql`
   }
 `;
 
+export const SEARCH_PROJECTS = gql`
+  query($searchTerm: String) {
+    searchProjects(searchTerm: $searchTerm) {
+      _id
+      title
+      imageUrl
+      description
+    }
+  }
+`;
+
 //contact mutations
 
 //admin queries

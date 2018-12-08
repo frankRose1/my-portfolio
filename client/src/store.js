@@ -6,7 +6,8 @@ import {
   FETCH_PROJECTS,
   SIGNIN_ADMIN,
   GET_CURRENT_ADMIN,
-  POST_PROJECT
+  POST_PROJECT,
+  SEARCH_PROJECTS
 } from './queries';
 
 Vue.use(Vuex);
@@ -47,6 +48,19 @@ export default new Vuex.Store({
         })
         .catch(err => {
           commit('setLoading', false);
+        });
+    },
+    searchProjects({ commit }, payload) {
+      apolloClient
+        .query({
+          query: SEARCH_PROJECTS,
+          variables: payload
+        })
+        .then(({ data }) => {
+          console.log(data.searchProjects);
+        })
+        .catch(err => {
+          commit('setError', err);
         });
     },
     signinAdmin({ commit }, payload) {
