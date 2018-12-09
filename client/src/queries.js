@@ -55,6 +55,25 @@ export const SEARCH_PROJECTS = gql`
 `;
 
 //contact mutations
+export const SEND_EMAIL = gql`
+  mutation(
+    $senderEmail: String!
+    $senderName: String
+    $subject: String!
+    $senderPhone: String
+    $comments: String!
+  ) {
+    sendMail(
+      senderEmail: $senderEmail
+      senderName: $senderName
+      subject: $subject
+      senderPhone: $senderPhone
+      comments: $comments
+    ) {
+      message
+    }
+  }
+`;
 
 //admin queries
 export const GET_CURRENT_ADMIN = gql`

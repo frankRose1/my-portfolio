@@ -44,6 +44,19 @@
       <!-- Search Term -->
       <v-text-field v-model="searchTerm" @input="handleSearchProjects" flex prepend-icon="search" placeholder="Search projects" hide-details single-line></v-text-field>
 
+      <!-- Search Results -->
+      <v-card dark v-if="searchResults.length" id="search__card">
+        <v-list>
+          <v-list-tile v-for="result in searchResults" :key="result._id" @click="goToSearchResult(result._id)" >
+            <v-img :src="result.imageUrl" width="40px"></v-img>
+            <v-list-tile-title>
+              {{result.title}} -
+              <span class="font-weight-thin">{{formatDescription(result.description)}}</span>
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-card>
+
       <v-spacer></v-spacer>
       <!-- Horizontal nav items -->
       <v-toolbar-items class="hidden-xs-only">
@@ -83,7 +96,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['admin']),
+    ...mapGetters(['admin', 'searchResults']),
     horizontalNavItems() {
       let items = [
         {icon: 'account_box', title: 'About', link: '/about'},
@@ -118,6 +131,15 @@ export default {
       this.$store.dispatch('searchProjects', {
         searchTerm: this.searchTerm
       });
+    },
+    formatDescription(desc){
+      return desc.length > 25 ? `${desc.slice(0, 25)}...` : desc;
+    },
+    goToSearchResult(resultId){
+      //clear search term to remove the cards
+      this.searchTerm = '';
+      this.$router.push(`/projects/${resultId}`);
+      this.$store.commit('clearSearchResults');
     }
   }
 }
@@ -138,5 +160,13 @@ export default {
   .fade-leave-active {
     opacity: 0;
     transform: translateX(-25px);
+  }
+
+  #search__card {
+    position: absolute;
+    width: 100vw;
+    z-index: 10;
+    top: 100%;
+    left: 0%;
   }
 </style>

@@ -25,9 +25,20 @@ type Token {
   token: String!
 }
 
+type Message {
+  message: String!
+}
+
 type Mutation {
   signinAdmin(email: String!, password: String!): Token
   signupAdmin(name: String!, password: String!, email: String!): Token
+  sendEmail(
+    senderEmail: String!
+    senderName: String
+    subject: String!
+    senderPhone: String
+    comments: String!
+  ): Message!
   postProject(
     title: String!
     githubLink: String

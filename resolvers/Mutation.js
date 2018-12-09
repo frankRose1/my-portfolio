@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { transporter, formatEmail } = require('../mailer');
 
 const createToken = (admin, expiresIn) => {
   const { email, name } = admin;
@@ -34,6 +35,21 @@ const Mutations = {
     const project = new Project({ ...args });
     await project.save();
     return { ...project._doc, _id: project._id.toString() };
+  },
+  async sendEmail(
+    _,
+    { senderEmail, senderName, subject, senderPhone, comments },
+    ctx
+  ) {
+    const emailHtml = formatEmail({ senderName, senderPhone, comments });
+    const emailRes = await transporter.sendMail({
+      from: senderEmail, // sender address
+      to: process.env.ADMIN_EMAIL, // list of receivers
+      subject, // Subject line
+      html: emailHtml // html body
+    });
+
+    return { message: 'Your message has been sent!', mailSent: true };
   }
 };
 

@@ -47,7 +47,7 @@ const Queries = {
     if (searchTerm) {
       const searchResults = await Project.find(
         //perform text search
-        { $text: { $search: searchProjects } },
+        { $text: { $search: searchTerm } },
         // asign a score to searchTerm to find the best matching results
         { score: { $meta: 'textScore' } }
         //sort results by the textScore being projected to the results
@@ -56,7 +56,10 @@ const Queries = {
           score: { $meta: 'textScore' }
         })
         .limit(5);
-      return searchResults;
+      return searchResults.map(res => ({
+        ...res._doc,
+        _id: res._id.toString()
+      }));
     }
   }
 };

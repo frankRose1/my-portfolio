@@ -7,7 +7,8 @@ import {
   SIGNIN_ADMIN,
   GET_CURRENT_ADMIN,
   POST_PROJECT,
-  SEARCH_PROJECTS
+  SEARCH_PROJECTS,
+  SEND_EMAIL
 } from './queries';
 
 Vue.use(Vuex);
@@ -15,6 +16,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     projects: [],
+    searchResults: [],
     loading: false,
     admin: null,
     formError: null
@@ -23,6 +25,12 @@ export default new Vuex.Store({
     setProjects(state, payload) {
       state.projects = payload;
     },
+    setSearchResults(state, payload) {
+      if (payload !== null) {
+        state.searchResults = payload;
+      }
+    },
+    clearSearchResults: state => (state.searchResults = []),
     setLoading(state, payload) {
       state.loading = payload;
     },
@@ -57,10 +65,28 @@ export default new Vuex.Store({
           variables: payload
         })
         .then(({ data }) => {
-          console.log(data.searchProjects);
+          commit('setSearchResults', data.searchProjects);
         })
         .catch(err => {
-          commit('setError', err);
+          console.log(err);
+        });
+    },
+    sendMail({ commit }, payload) {
+      commit('clearFormError');
+      commit('setLoading', true);
+      apolloClient
+        .mutate({
+          mutation: SEND_EMAIL,
+          variables: payload
+        })
+        .then(({ data }) => {
+          console.log(data);
+          commit('setLoading', false);
+          //redirect to home and show success snackbar?
+        })
+        .catch(err => {
+          commit('setFormError', err);
+          commit('setLoading', false);
         });
     },
     signinAdmin({ commit }, payload) {
@@ -111,11 +137,33 @@ export default new Vuex.Store({
       apolloClient
         .mutate({
           mutation: POST_PROJECT,
-          variables: payload
+          variables: payload,
+          //tell apollo how to update the data
+          update: (cache, { data }) => {
+            const { postProject } = data;
+            const cacheData = cache.readQuery({
+              query: FETCH_PROJECTS
+            });
+            cacheData.fetchProjects.unshift(postProject);
+            //write the updated data back
+            cache.writeQuery({
+              query: FETCH_PROJECTS,
+              data: cacheData
+            });
+          },
+          //tell apollo to update the data immediately
+          optimisticResponse: {
+            __typename: 'Mutation',
+            postProject: {
+              __typename: 'Project',
+              _id: -1,
+              ...payload
+            }
+          }
         })
         .then(({ data }) => {
-          console.log(data);
           commit('setLoading', false);
+          router.push('/');
         })
         .catch(err => {
           commit('setLoading', false);
@@ -127,6 +175,7 @@ export default new Vuex.Store({
     projects: state => state.projects,
     loading: state => state.loading,
     admin: state => state.admin,
-    formError: state => state.formError
+    formError: state => state.formError,
+    searchResults: state => state.searchResults
   }
 });
