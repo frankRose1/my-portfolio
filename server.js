@@ -33,15 +33,19 @@ const getAdmin = async token => {
 const server = new ApolloServer({
   //gql schema
   typeDefs,
-  context: async ({ req }) => {
-    const token = req.headers['authorization'];
-    return {
-      //expose the DB via context
-      Admin,
-      Project,
-      currentAdmin: await getAdmin(token)
-    };
+  context: {
+    Admin,
+    Project
   },
+  // context: async ({ req }) => {
+  //   const token = req.headers['authorization'];
+  //   return {
+  //     //expose the DB via context
+  //     Admin,
+  //     Project,
+  //     currentAdmin: await getAdmin(token)
+  //   };
+  // },
   resolvers: {
     Query,
     Mutation

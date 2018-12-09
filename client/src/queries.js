@@ -63,7 +63,7 @@ export const SEND_EMAIL = gql`
     $senderPhone: String
     $comments: String!
   ) {
-    sendMail(
+    sendEmail(
       senderEmail: $senderEmail
       senderName: $senderName
       subject: $subject
@@ -91,6 +91,14 @@ export const SIGNIN_ADMIN = gql`
   mutation($email: String!, $password: String!) {
     signinAdmin(email: $email, password: $password) {
       token
+    }
+  }
+`;
+
+export const DELETE_PROJECT = gql`
+  mutation($projectId: ID!) {
+    deleteProject(projectId: $projectId) {
+      _id
     }
   }
 `;

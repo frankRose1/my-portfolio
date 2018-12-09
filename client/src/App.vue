@@ -80,6 +80,13 @@
           <router-view />
         </transition>
       </v-container>
+
+      <!-- snackbar for after an email is sent -->
+      <v-snackbar v-model="emailSnackbar" :timeout="5000" color="success" bottom left>
+        <v-icon class="mr-3">check_circle</v-icon>
+        <h3>Your message has been sent, thank you for reaching out!</h3>
+        <v-btn dark flat @click="emailSnackbar = false">Close</v-btn>
+      </v-snackbar>
     </main>
     
   </v-app>
@@ -92,11 +99,20 @@ export default {
   data(){
     return {
       sideNav: false,
+      emailSnackbar: false,
       searchTerm: ''
     }
   },
+  watch: {
+    emailSent(newValue, oldValue){
+      //if someone sends an email, show a success pop up
+      if (oldValue === null){
+        this.emailSnackbar = true;
+      }
+    }
+  },
   computed: {
-    ...mapGetters(['admin', 'searchResults']),
+    ...mapGetters(['admin', 'searchResults', 'emailSent']),
     horizontalNavItems() {
       let items = [
         {icon: 'account_box', title: 'About', link: '/about'},

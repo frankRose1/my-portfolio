@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { transporter, formatEmail } = require('../mailer');
+const { transporter, formatEmail } = require('../utils/mailer');
 
 const createToken = (admin, expiresIn) => {
   const { email, name } = admin;
@@ -31,10 +31,19 @@ const Mutations = {
     return { token };
   },
   async postProject(_, args, { Project }) {
-    //TODO: AUTHENTICATE THE USER
+    //TODO: Requires a signed in ADMIN
     const project = new Project({ ...args });
     await project.save();
     return { ...project._doc, _id: project._id.toString() };
+  },
+  async deleteProject(_, { projectId }, { Project }) {
+    //TODO: Requires a signed in ADMIN
+    const project = Project.findById(projectId);
+    if (!project) {
+      throw new Error('No project found with that ID.');
+    }
+    await project.remove();
+    return { message: 'Project was successfully deleted from the database.' };
   },
   async sendEmail(
     _,
@@ -49,7 +58,7 @@ const Mutations = {
       html: emailHtml // html body
     });
 
-    return { message: 'Your message has been sent!', mailSent: true };
+    return { message: 'Your message has been sent!' };
   }
 };
 

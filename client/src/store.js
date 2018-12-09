@@ -19,7 +19,8 @@ export default new Vuex.Store({
     searchResults: [],
     loading: false,
     admin: null,
-    formError: null
+    formError: null,
+    emailSent: null
   },
   mutations: {
     setProjects(state, payload) {
@@ -41,7 +42,9 @@ export default new Vuex.Store({
     setFormError(state, payload) {
       state.formError = payload;
     },
-    clearFormError: state => (state.formError = null)
+    clearFormError: state => (state.formError = null),
+    setEmailSent: state => (state.emailSent = true),
+    resetEmailSent: state => (state.emailSent = null)
   },
   actions: {
     fetchProjects({ commit }) {
@@ -71,7 +74,8 @@ export default new Vuex.Store({
           console.log(err);
         });
     },
-    sendMail({ commit }, payload) {
+    sendEmail({ commit }, payload) {
+      commit('resetEmailSent');
       commit('clearFormError');
       commit('setLoading', true);
       apolloClient
@@ -80,9 +84,9 @@ export default new Vuex.Store({
           variables: payload
         })
         .then(({ data }) => {
-          console.log(data);
           commit('setLoading', false);
-          //redirect to home and show success snackbar?
+          commit('setEmailSent', true);
+          router.push('/');
         })
         .catch(err => {
           commit('setFormError', err);
@@ -176,6 +180,7 @@ export default new Vuex.Store({
     loading: state => state.loading,
     admin: state => state.admin,
     formError: state => state.formError,
-    searchResults: state => state.searchResults
+    searchResults: state => state.searchResults,
+    emailSent: state => state.emailSent
   }
 });

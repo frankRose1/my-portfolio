@@ -47,6 +47,7 @@ type Mutation {
     imageUrl: String
     tags: [String!]!
   ): Project!
+  deleteProject(projectId: ID!): Message!
 }
 
 type Query {

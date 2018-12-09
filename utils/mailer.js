@@ -18,9 +18,8 @@ const formatEmail = ({ senderName, senderPhone, comments }) => {
   return `
   <div style="
     border: 1px solid black;
-    padding: 20px;
-    text-align: center;
-    font-size: 20px;
+    padding: 10px;
+    font-size: 15px;
     line-height: 2;
     font-family: sans-serif;
   ">
