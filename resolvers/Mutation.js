@@ -1,11 +1,6 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const { transporter, formatEmail } = require('../utils/mailer');
-
-const createToken = (admin, expiresIn) => {
-  const { email, name } = admin;
-  return jwt.sign({ email, name }, process.env.APP_SECRET, { expiresIn });
-};
+const { createToken, checkAuthToken } = require('../utils/auth');
 
 const Mutations = {
   async signupAdmin(_, { email, password, name }, { Admin }) {
@@ -30,15 +25,21 @@ const Mutations = {
     const token = createToken(admin, '1h');
     return { token };
   },
-  async postProject(_, args, { Project }) {
-    //TODO: Requires a signed in ADMIN
+  async postProject(_, args, { Project, token }) {
+    const { isAuthenticated } = await checkAuthToken(token);
+    if (!isAuthenticated) {
+      throw new Error('Sorry, you dont have permission to do that!');
+    }
     const project = new Project({ ...args });
     await project.save();
     return { ...project._doc, _id: project._id.toString() };
   },
-  async deleteProject(_, { projectId }, { Project }) {
-    //TODO: Requires a signed in ADMIN
-    const project = Project.findById(projectId);
+  async deleteProject(_, { projectId }, { Project, token }) {
+    const { isAuthenticated } = await checkAuthToken(token);
+    if (!isAuthenticated) {
+      throw new Error('Sorry, you dont have permission to do that!');
+    }
+    const project = await Project.findById(projectId);
     if (!project) {
       throw new Error('No project found with that ID.');
     }
@@ -52,10 +53,10 @@ const Mutations = {
   ) {
     const emailHtml = formatEmail({ senderName, senderPhone, comments });
     const emailRes = await transporter.sendMail({
-      from: senderEmail, // sender address
-      to: process.env.ADMIN_EMAIL, // list of receivers
-      subject, // Subject line
-      html: emailHtml // html body
+      from: senderEmail,
+      to: process.env.ADMIN_EMAIL,
+      subject,
+      html: emailHtml
     });
 
     return { message: 'Your message has been sent!' };

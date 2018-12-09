@@ -98,7 +98,7 @@ export const SIGNIN_ADMIN = gql`
 export const DELETE_PROJECT = gql`
   mutation($projectId: ID!) {
     deleteProject(projectId: $projectId) {
-      _id
+      message
     }
   }
 `;

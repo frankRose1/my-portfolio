@@ -8,7 +8,8 @@ import {
   GET_CURRENT_ADMIN,
   POST_PROJECT,
   SEARCH_PROJECTS,
-  SEND_EMAIL
+  SEND_EMAIL,
+  DELETE_PROJECT
 } from './queries';
 
 Vue.use(Vuex);
@@ -134,6 +135,22 @@ export default new Vuex.Store({
       //clear store and redirect off protected route
       await apolloClient.resetStore();
       router.push('/');
+    },
+    deleteProject({ commit }, payload) {
+      commit('clearFormError');
+      commit('setLoading', true);
+      apolloClient
+        .mutate({
+          mutation: DELETE_PROJECT,
+          variables: payload
+        })
+        .then(({ data }) => {
+          router.push('/');
+        })
+        .catch(err => {
+          commit('setLoading', false);
+          commit('setFormError', err);
+        });
     },
     postProject({ commit }, payload) {
       commit('clearFormError');

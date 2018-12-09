@@ -5,6 +5,8 @@ import ProtectedRoute from './ProtectedRoute';
 
 //Admin
 import AdminDashboard from './components/Admin/AdminDashboard.vue';
+import AddProject from './components/Admin/AddProject.vue';
+import DeleteProject from './components/Admin/DeleteProject.vue';
 import AdminSignin from './components/Admin/AdminSignin.vue';
 
 //projects
@@ -50,6 +52,18 @@ export default new Router({
       path: '/admin/dashboard',
       name: 'AdminDashboard',
       component: AdminDashboard,
+      beforeEnter: ProtectedRoute
+    },
+    {
+      path: '/admin/add',
+      name: 'AddProject',
+      component: AddProject,
+      beforeEnter: ProtectedRoute
+    },
+    {
+      path: '/admin/delete',
+      name: 'DeleteProject',
+      component: DeleteProject,
       beforeEnter: ProtectedRoute
     }
   ]

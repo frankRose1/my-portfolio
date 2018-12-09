@@ -3,8 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
-const { ApolloServer, AuthenticationError } = require('apollo-server');
+const { ApolloServer } = require('apollo-server');
 const port = process.env.PORT || 5000;
 const Mutation = require('./resolvers/Mutation');
 const Query = require('./resolvers/Query');
@@ -17,35 +16,16 @@ const typeDefs = fs.readFileSync(filePath, 'utf-8');
 const Admin = require('./models/Admin');
 const Project = require('./models/Project');
 
-//verify JWT sent from client
-const getAdmin = async token => {
-  if (token) {
-    try {
-      return await jwt.verify(token, process.env.APP_SECRET);
-    } catch (err) {
-      throw new AuthenticationError(
-        'Your session has ended. Please sign in again'
-      );
-    }
-  }
-};
-
 const server = new ApolloServer({
   //gql schema
   typeDefs,
-  context: {
-    Admin,
-    Project
+  context: ({ req }) => {
+    return {
+      Admin,
+      Project,
+      token: req.headers['authorization']
+    };
   },
-  // context: async ({ req }) => {
-  //   const token = req.headers['authorization'];
-  //   return {
-  //     //expose the DB via context
-  //     Admin,
-  //     Project,
-  //     currentAdmin: await getAdmin(token)
-  //   };
-  // },
   resolvers: {
     Query,
     Mutation

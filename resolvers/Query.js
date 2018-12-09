@@ -1,3 +1,5 @@
+const { checkAuthToken } = require('../utils/auth');
+
 const Queries = {
   async fetchProjects(_, args, { Project }) {
     const projects = await Project.find({});
@@ -6,11 +8,9 @@ const Queries = {
       _id: project._id.toString()
     }));
   },
-  async getCurrentAdmin(_, args, { Admin, currentAdmin }) {
-    if (!currentAdmin) {
-      return null;
-    }
-    const admin = await Admin.findOne({ email: currentAdmin.email });
+  async getCurrentAdmin(_, args, { Admin, token }) {
+    const { adminData } = await checkAuthToken(token);
+    const admin = await Admin.findOne({ email: adminData.email });
     return { ...admin._doc, _id: admin._id.toString() };
   },
   async infiniteScrollProjects(_, { pageNum, pageSize }, { Project }) {
