@@ -1,6 +1,13 @@
 <template>
 
   <v-container text-xs-center>
+    <!-- Page Title -->
+    <v-layout mb-3 row wrap>
+      <v-flex xs12 sm6 offset-sm3>
+        <h1 class="main-title">Recent Work</h1>
+      </v-flex>
+    </v-layout>
+
     <!-- Loading -->
     <v-layout row>
       <v-dialog v-model="loading" persistent fullscreen>
@@ -49,7 +56,7 @@ export default {
 <style>
 #carousel__title {
   position: absolute;
-  background: rgba ();
+  background: rgba(0, 0, 0, 0.4);
   color: white;
   border: 5px 5px 0 0;
   bottom: 50px;

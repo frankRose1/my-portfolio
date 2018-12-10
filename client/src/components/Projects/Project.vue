@@ -4,16 +4,24 @@
     <!-- Project card -->
     <v-layout row wrap>
       <v-flex xs12>
-        <v-card hover>
+        <v-card>
           <v-card-title>
             <h1>{{fetchProjectById.title}}</h1>
+              <a v-if="fetchProjectById.githubLink" :href="fetchProjectById.githubLink" target="_blank" class="code__button">
+                <span><i class="devicon-github-plain github"></i></span>
+                View Code
+              </a>
+              <a v-if="fetchProjectById.demoLink" :href="fetchProjectById.demoLink" target="_blank" class="code__button">
+                <span><i class="fas fa-desktop"></i></span>
+                Live Demo
+              </a>
             <v-spacer></v-spacer>
             <v-icon @click="goToPrevPage" color="info" large>arrow_back</v-icon>
           </v-card-title>
 
           <v-tooltip right>
             <span>Click to enlarge image</span>
-            <v-img @click="toggleImageDialog" slot="activator" :src="fetchProjectById.imageUrl" id="project__image"></v-img>
+            <v-img @click="toggleImageDialog" slot="activator" style="cursor: pointer" :src="fetchProjectById.imageUrl" id="project__image"></v-img>
           </v-tooltip>
 
           <!-- enlarged image -->
@@ -71,8 +79,34 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #project__image{
   height: 400px !important;
 }
+
+.code__button{
+  text-decoration: none;
+  padding: 10px 20px;
+  text-align: center;
+  background: #ddd;
+  color: #222;
+  border-radius: 5px;
+  margin-left: 15px;
+  transition: background-color 0.4s ease-in, color 0.4s ease-in;
+}
+
+.code__button i {
+  font-size: 18px;
+}
+
+.code__button:hover{
+  background: #5E977B;
+  color: white;
+}
+
+.code__button span {
+  margin-right: 5px;
+}
+
+
 </style>

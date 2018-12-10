@@ -1,10 +1,10 @@
 <template>
-  <v-container text-xs-center mt-5 pd-5>
+  <v-container text-xs-center>
 
     <!-- Page Title -->
     <v-layout mb-3 row wrap>
       <v-flex xs12 sm6 offset-sm3>
-        <h1>Want to chat? Send an email!</h1>
+        <h1 class="main-title">Want to chat? Send an email!</h1>
       </v-flex>
     </v-layout>
 

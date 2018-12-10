@@ -1,6 +1,13 @@
 <template>
   <v-container fluid grid-list-xl>
 
+    <!-- Page Title -->
+    <v-layout text-xs-center row wrap>
+      <v-flex xs12 sm6 offset-sm3>
+        <h1 class="main-title">My Portfolio</h1>
+      </v-flex>
+    </v-layout>
+
     <!-- Project Card -->
     <v-layout row wrap v-if="infiniteScrollProjects">
       <v-flex xs12 sm6 v-for="project in infiniteScrollProjects.projects" :key="project._id">
@@ -25,15 +32,15 @@
               <v-list-tile>
                 <v-list-tile-content>
                   <v-list-tile-title class="text--primary">
-                    place holder content
+                    {{formatDescription(project.description)}}
                   </v-list-tile-title>
                   <v-list-tile-subtitle class="font-weight-thin">
                     Added {{project.dateAdded}}
                   </v-list-tile-subtitle>
                 </v-list-tile-content>
 
-                <v-list-tile-action>
-                  <v-btn ripple icon>
+                <v-list-tile-action >
+                  <v-btn @click="goToProject(project._id)" ripple icon>
                     <v-icon color="grey lighten-1">info</v-icon>
                   </v-btn>
                 </v-list-tile-action>
@@ -60,7 +67,7 @@
 
 <script>
 import { INFINITE_SCROLL_PROJECTS } from '../../queries';
-const pageSize = 2;
+const pageSize = 4;
 export default {
   name: 'Projects',
   data(){
@@ -82,6 +89,9 @@ export default {
   methods: {
     goToProject(projectId){
       this.$router.push(`/projects/${projectId}`);
+    },
+    formatDescription(desc){
+      return desc.length > 25 ? `${desc.slice(0, 25)}...` : desc;
     },
     showMore(){
       this.pageNum += 1;

@@ -33,11 +33,9 @@ export const INFINITE_SCROLL_PROJECTS = gql`
       projects {
         _id
         imageUrl
+        description
         title
         dateAdded
-        githubLink
-        demoLink
-        tags
       }
     }
   }

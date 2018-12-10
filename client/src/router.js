@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './components/Home.vue';
 import ProtectedRoute from './ProtectedRoute';
 
 //Admin
@@ -10,11 +9,13 @@ import DeleteProject from './components/Admin/DeleteProject.vue';
 import AdminSignin from './components/Admin/AdminSignin.vue';
 
 //projects
-import Projects from './components/Projects/Projects.vue';
+import Portfolio from './components/Projects/Portfolio.vue';
 import Project from './components/Projects/Project.vue';
 
-//contact
+//general
 import ContactForm from './components/Contact/ContactForm.vue';
+import Skills from './components/Skills.vue'
+import Home from './components/Home.vue';
 
 Vue.use(Router);
 
@@ -28,9 +29,14 @@ export default new Router({
       component: Home
     },
     {
-      path: '/projects',
-      name: 'Projects',
-      component: Projects
+      path: '/skills',
+      name: 'Skills',
+      component: Skills
+    },
+    {
+      path: '/portfolio',
+      name: 'Portfolio',
+      component: Portfolio
     },
     {
       path: '/projects/:projectId',

@@ -42,7 +42,7 @@
       <v-spacer></v-spacer>
       
       <!-- Search Term -->
-      <v-text-field v-model="searchTerm" @input="handleSearchProjects" flex prepend-icon="search" placeholder="Search projects" hide-details single-line></v-text-field>
+      <v-text-field v-model="searchTerm" @input="handleSearchProjects" flex prepend-icon="search" placeholder="Search projects by title or keyword (e.g. Node, React, etc)" hide-details single-line></v-text-field>
 
       <!-- Search Results -->
       <v-card dark v-if="searchResults.length" id="search__card">
@@ -88,7 +88,19 @@
         <v-btn dark flat @click="emailSnackbar = false">Close</v-btn>
       </v-snackbar>
     </main>
-    
+
+    <!-- footer -->
+    <footer>
+        <v-container text-xs-center>
+            <ul class="social-icons">
+                <li><a href="https://twitter.com/devs_fr" target="_blank"><i class="devicon-twitter-plain twitter"></i></a></li>
+                <li><a href="https://github.com/frankRose1" target="_blank"><i class="devicon-github-plain github gh-hover"></i></a></li>
+                <li><a href="https://stackexchange.com/users/14858932/frank-rose" target="_blank"><i class="fab fa-stack-overflow"></i></a></li>
+            </ul>
+            <p class="copyright">&copy; Frank Rosendorf {{new Date().getFullYear()}} | All Rights Reserved</p>
+        </v-container>
+    </footer>
+
   </v-app>
 </template>
 
@@ -115,8 +127,8 @@ export default {
     ...mapGetters(['admin', 'searchResults', 'emailSent']),
     horizontalNavItems() {
       let items = [
-        {icon: 'account_box', title: 'About', link: '/about'},
-        {icon: 'create', title: 'Projects', link: '/projects'},
+        {icon: 'code', title: 'Skills', link: '/Skills'},
+        {icon: 'brush', title: 'Portfolio', link: '/portfolio'},
         {icon: 'chat', title: 'Contact', link: '/contact'},
       ]
       if(this.admin) {
@@ -126,8 +138,8 @@ export default {
     },
     sideNavItems() {
       let items = [
-        {icon: 'account_box', title: 'About', link: '/about'},
-        {icon: 'create', title: 'Projects', link: '/projects'},
+        {icon: 'code', title: 'Skills', link: '/Skills'},
+        {icon: 'brush', title: 'Portfolio', link: '/portfolio'},
         {icon: 'chat', title: 'Contact', link: '/contact'},
       ];
       if (this.admin) {
@@ -162,6 +174,20 @@ export default {
 </script>
 
 <style>
+
+  main {
+    padding: 100px 0;
+  }
+
+  .main-title:after {
+    content: "";
+    width: 150px;
+    margin: 10px auto 15px auto;
+    display: block;
+    background: rgba(0, 0, 0, 0.4);
+    height: 2px;
+  }
+
   .fade-enter-active,
   .fade-leave-active {
     transition-property: all;
@@ -184,5 +210,42 @@ export default {
     z-index: 10;
     top: 100%;
     left: 0%;
+  }
+
+  footer {
+    background-color: #222;
+    color: white;
+    padding: 30px;
+  }
+
+  footer .social-icons {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    max-width: 280px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto;
+  }
+
+  footer .social-icons a {
+    text-decoration: none;
+    color: white;
+  }
+
+  .social-icons li i {
+    font-size: 35px;
+    transition: color 0.3s ease-in;
+  }
+
+  .gh-hover:hover {
+    color: #c9510c;
+  }
+  .twitter:hover {
+    color: #1da1f2;
+  }
+  .fa-stack-overflow:hover {
+    color: coral;
   }
 </style>
