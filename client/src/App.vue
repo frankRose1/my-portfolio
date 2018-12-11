@@ -32,7 +32,7 @@
 
     <!--Horizontal Nav -->
     <v-toolbar fixed color="primary" dark>
-      <v-toolbar-side-icon @click="toggleSideNav"></v-toolbar-side-icon>
+
       <v-toolbar-title class="hidden-xs-only">
         <router-link to="/" tag="span" style="cursor: pointer">
           FrankRosendorf
@@ -58,7 +58,8 @@
       </v-card>
 
       <v-spacer></v-spacer>
-      <!-- Horizontal nav items -->
+  <!-- Horizontal nav items / toggle side nav -->
+      <v-toolbar-side-icon class="hidden-sm-and-up" @click="toggleSideNav"></v-toolbar-side-icon>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn flat v-for="item in horizontalNavItems" :key="item.title" :to="item.link">
           <v-icon class="hidden-sm-only" left>{{item.icon}}</v-icon>
@@ -75,11 +76,9 @@
 
     <!-- App content -->
     <main>
-      <v-container class="mt-4">
-        <transition name="fade">
-          <router-view />
-        </transition>
-      </v-container>
+      <transition name="fade">
+        <router-view />
+      </transition>
 
       <!-- snackbar for after an email is sent -->
       <v-snackbar v-model="emailSnackbar" :timeout="5000" color="success" bottom left>
@@ -127,7 +126,7 @@ export default {
     ...mapGetters(['admin', 'searchResults', 'emailSent']),
     horizontalNavItems() {
       let items = [
-        {icon: 'code', title: 'Skills', link: '/Skills'},
+        {icon: 'code', title: 'Skills', link: '/skills'},
         {icon: 'brush', title: 'Portfolio', link: '/portfolio'},
         {icon: 'chat', title: 'Contact', link: '/contact'},
       ]
@@ -138,7 +137,7 @@ export default {
     },
     sideNavItems() {
       let items = [
-        {icon: 'code', title: 'Skills', link: '/Skills'},
+        {icon: 'code', title: 'Skills', link: '/skills'},
         {icon: 'brush', title: 'Portfolio', link: '/portfolio'},
         {icon: 'chat', title: 'Contact', link: '/contact'},
       ];
@@ -175,11 +174,16 @@ export default {
 
 <style>
 
-  main {
-    padding: 100px 0;
+  #page__layout {
+    margin-top: 120px;
+    margin-bottom: 120px;
   }
 
-  .main-title:after {
+  .main__title{
+    font-size: 2.5rem;
+  }
+
+  .main__title:after {
     content: "";
     width: 150px;
     margin: 10px auto 15px auto;

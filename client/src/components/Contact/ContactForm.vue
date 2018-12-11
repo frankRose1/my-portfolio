@@ -1,10 +1,10 @@
 <template>
-  <v-container text-xs-center>
+  <v-container id="page__layout" text-xs-center>
 
     <!-- Page Title -->
     <v-layout mb-3 row wrap>
       <v-flex xs12 sm6 offset-sm3>
-        <h1 class="main-title">Want to chat? Send an email!</h1>
+        <h2 class="main__title">Want to chat? Send an email!</h2>
       </v-flex>
     </v-layout>
 
@@ -18,7 +18,7 @@
     <!-- Contact Form -->
     <v-layout row wrap>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card color="secondary" dark>
+        <v-card color="white">
           <v-container>
             <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleSendEmail">
 
@@ -62,7 +62,7 @@
               <!-- submit button -->
               <v-layout row>
                 <v-flex xs12>
-                  <v-btn :loading="loading" :disabled="!isFormValid" color="primary" type="submit">
+                  <v-btn :loading="loading" :disabled="!isFormValid" color="accent" type="submit">
                     <span slot="loader" class="custom-loader">
                       <v-icon light>cached</v-icon>
                     </span>

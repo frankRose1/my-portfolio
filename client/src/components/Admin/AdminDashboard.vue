@@ -1,12 +1,12 @@
 <template>
-  <v-container mt-5 pd-5 text-xs-center >
+  <v-container id="page__layout" text-xs-center >
     <v-layout row wrap>
       <v-flex xs12 sm6 offset-sm3>
 
         <!-- Form Title -->
         <v-layout row wrap>
           <v-flex xs12 sm6 offset-sm3>
-            <h1 class="primary--text">Manage Projects</h1>
+            <h1 class="primary--text main__title">Manage Projects</h1>
           </v-flex>
         </v-layout>
 

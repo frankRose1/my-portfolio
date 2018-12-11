@@ -1,9 +1,9 @@
 <template>
-  <v-container text-xs-center>
+  <v-container id="page__layout" text-xs-center>
     <!-- Page Title -->
     <v-layout mb-3 row wrap>
       <v-flex xs12 sm6 offset-sm3>
-        <h1 class="main-title">Here's What I Know</h1>
+        <h2 class="main__title">Here's What I Know</h2>
       </v-flex>
     </v-layout>
     <!-- Skills Display -->
@@ -15,21 +15,21 @@
           </li>
       </ul>
       <div class="skill-cards">
-          <article class="skill-card">
+          <article class="skill-card skill-card-red">
               <i class="fas fa-code"></i>
               <h3>Full Stack JavaScript</h3>
               <p>The projects I've built with JavaScript have really shown me how awesome of a language it is! 
                 After building command line apps, to backend APIs, and working with front-end libraries like React, 
                 my passion for becoming a better JavaScript developer grows with each project I build.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card skill-card-blue">
               <i class="fas fa-graduation-cap"></i>
               <h3>Continued Learning</h3>
               <p>I'm committed to learning everything I can about the wonderful world of web development! I'm working on new projects all the time to challenge myself and become a better developer.
                 Currently, I'm enjoying building client and server side application with GraphQL.
               </p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card skill-card-orange">
               <i class="fas fa-desktop"></i>
               <h3>Web Development</h3>
               <p>Building web apps is what I love to do. From working with databases on the backend to 
@@ -99,10 +99,10 @@ export default {
 }
 
 .skill-icons li p {
-  border-radius: 12px 8px;
+  border-radius: 12px 6px;
   background-color: rgba(0, 0, 0, 0.68);
-  max-width: 65px;
-  padding: 5px;
+  max-width: 75px;
+  padding: 5px 8px;
   color: #fff;
   opacity: 0;
   transition: 0.5s;
@@ -133,7 +133,6 @@ export default {
 }
 
 .skill-card i {
-  color: #5E977B;
   font-size: 35px;
   margin-bottom: 15px;
 }
@@ -153,6 +152,30 @@ export default {
 .skill-card p {
   font-size: 18px;
   line-height: 23px;
+}
+
+.skill-card-red {
+  border-top: 10px solid #F25F5C;
+}
+
+.skill-card-red i {
+  color: #F25F5C;
+}
+
+.skill-card-blue {
+  border-top: 10px solid #357edd;
+}
+
+.skill-card-blue i {
+  color: #357edd;
+}
+
+.skill-card-orange {
+  border-top: 10px solid #f09233;
+}
+
+.skill-card-orange i {
+  color: #f09233;
 }
 
 .inline-gh {

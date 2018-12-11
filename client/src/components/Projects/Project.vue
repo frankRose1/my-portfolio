@@ -1,8 +1,7 @@
 <template>
-  <v-container v-if="fetchProjectById" class="mt-3" flexbox center>
-
+  <v-container  flexbox center>
     <!-- Project card -->
-    <v-layout row wrap>
+    <v-layout v-if="fetchProjectById" id="page__layout" row wrap>
       <v-flex xs12>
         <v-card>
           <v-card-title>
@@ -33,7 +32,7 @@
 
           <v-card-text>
             <span v-for="(tag, index) in fetchProjectById.tags" :key="index">
-              <v-chip class="mb-3" color="primary" text-color="white">{{tag}}</v-chip>
+              <v-chip class="mb-3" color="info" text-color="white">{{tag}}</v-chip>
             </span>
             <h3>{{fetchProjectById.description}}</h3>
           </v-card-text>
@@ -100,7 +99,7 @@ export default {
 }
 
 .code__button:hover{
-  background: #5E977B;
+  background: #357edd;
   color: white;
 }
 

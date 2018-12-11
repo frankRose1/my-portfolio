@@ -1,10 +1,10 @@
 <template>
-  <v-container text-xs-center mt-5 pd-5>
+  <v-container id="page__layout" text-xs-center>
 
     <!-- Page Title -->
     <v-layout row wrap>
       <v-flex xs12 sm6 offset-sm3>
-        <h1>Welcome Back!</h1>
+        <h2 class="main__title">Welcome Back!</h2>
       </v-flex>
     </v-layout>
 
@@ -18,7 +18,7 @@
     <!-- Admin Signin Form -->
     <v-layout row wrap>
       <v-flex xs12 sm6 offset-sm3>
-        <v-card color="secondary" dark>
+        <v-card color="white">
           <v-container>
             <v-form v-model="isFormValid" lazy-validation ref="form" @submit.prevent="handleSigninAdmin">
 
@@ -39,7 +39,7 @@
               <!-- signin button -->
               <v-layout row>
                 <v-flex xs12>
-                  <v-btn :loading="loading" :disabled="!isFormValid" color="primary" type="submit">
+                  <v-btn :loading="loading" :disabled="!isFormValid" color="accent" type="submit">
                     <span slot="loader" class="custom-loader">
                       <v-icon light>cached</v-icon>
                     </span>
