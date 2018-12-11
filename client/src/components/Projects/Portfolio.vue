@@ -78,7 +78,6 @@ export default {
   name: 'Projects',
   data(){
     return {
-      showMoreEnabled: true,
       pageNum: 1,
       showProjectDetails: false
     }
@@ -90,6 +89,11 @@ export default {
         pageSize,
         pageNum: 1
       }
+    }
+  },
+  computed: {
+    showMoreEnabled(){
+      return this.infiniteScrollProjects && this.infiniteScrollProjects.hasMore;
     }
   },
   methods: {
@@ -113,7 +117,6 @@ export default {
         updateQuery: (prevResult, {fetchMoreResult}) => {
           const newProjects = fetchMoreResult.infiniteScrollProjects.projects;
           const hasMore = fetchMoreResult.infiniteScrollProjects.hasMore;
-          this.showMoreEnabled = hasMore;
 
           return {
             infiniteScrollProjects: {

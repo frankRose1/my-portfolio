@@ -3,24 +3,14 @@ const { transporter, formatEmail } = require('../utils/mailer');
 const { createToken, checkAuthToken } = require('../utils/auth');
 
 const Mutations = {
-  async signupAdmin(_, { email, password, name }, { Admin }) {
-    const existingAdmin = await Admin.findOne({ email });
-    if (existingAdmin) {
-      throw new Error('Admin already exists.');
-    }
-    const admin = new Admin({ email, password, name });
-    await admin.save();
-    const token = createToken(admin, '1h');
-    return { token };
-  },
   async signinAdmin(_, { email, password }, { Admin }) {
     const admin = await Admin.findOne({ email });
     if (!admin) {
-      throw new Error('No admin found with that email.');
+      throw new Error('Incorrect email and password combination.');
     }
     const isMatch = await bcrypt.compare(password, admin.password);
     if (!isMatch) {
-      throw new Error('Incorrect password.');
+      throw new Error('Incorrect email and password combination.');
     }
     const token = createToken(admin, '1h');
     return { token };

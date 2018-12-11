@@ -4,6 +4,7 @@ import './plugins/vuetify';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import VueParticles from 'vue-particles'
 
 import ApolloClient from 'apollo-boost';
 import VueApollo from 'vue-apollo';
@@ -13,6 +14,7 @@ import FormAlert from './components/Shared/FormAlert.vue';
 Vue.component('form-alert', FormAlert);
 
 Vue.use(VueApollo);
+Vue.use(VueParticles);
 
 //export client to be used in the store to fire off queries/mutations
 export const defaultClient = new ApolloClient({

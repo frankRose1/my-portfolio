@@ -26,7 +26,7 @@
               <i class="fas fa-graduation-cap"></i>
               <h3>Continued Learning</h3>
               <p>I'm committed to learning everything I can about the wonderful world of web development! I'm working on new projects all the time to challenge myself and become a better developer.
-                Currently, I'm enjoying building client and server side application with GraphQL.
+                Currently, I'm enjoying building client and server side applications with GraphQL.
               </p>
           </article>
           <article class="skill-card skill-card-orange">

@@ -39,7 +39,7 @@ mongoose
   )
   .then(() => {
     console.log('Connected to MongoDB.');
-    return server.listen(port);
+    return server.listen({port});
   })
   .then(({ url }) => console.log(`Server is listening on ${url}`))
   .catch(err => console.log(`Server error --> ${err}`));

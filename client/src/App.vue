@@ -6,7 +6,7 @@
       <v-toolbar color="secondary" dark flat>
         <v-toolbar-side-icon @click="toggleSideNav"></v-toolbar-side-icon>
         <router-link to="/" tag="span" style="cursor: pointer">
-          <h1 class="title pl-3">FrankRosendorf</h1>
+          <h1 class="title pl-3">{F/R}</h1>
         </router-link>
       </v-toolbar>
 
@@ -32,17 +32,21 @@
 
     <!--Horizontal Nav -->
     <v-toolbar fixed color="primary" dark>
-
+      
       <v-toolbar-title class="hidden-xs-only">
         <router-link to="/" tag="span" style="cursor: pointer">
-          FrankRosendorf
+          {F/R}
         </router-link>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
       
       <!-- Search Term -->
-      <v-text-field v-model="searchTerm" @input="handleSearchProjects" flex prepend-icon="search" placeholder="Search projects by title or keyword (e.g. Node, React, etc)" hide-details single-line></v-text-field>
+      <v-text-field v-model="searchTerm" 
+          @input="handleSearchProjects" 
+          flex prepend-icon="search" 
+          placeholder="Search projects by title or keyword (e.g. Node, React, GraphQL, etc)" 
+          hide-details single-line></v-text-field>
 
       <!-- Search Results -->
       <v-card dark v-if="searchResults.length" id="search__card">
@@ -179,8 +183,14 @@ export default {
     margin-bottom: 120px;
   }
 
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 400;
+  }
+
   .main__title{
     font-size: 2.5rem;
+    font-weight: 400;
   }
 
   .main__title:after {
