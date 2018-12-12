@@ -58,15 +58,7 @@
           <v-flex xs12>
 
           <!-- Loading -->
-          <v-layout row>
-            <v-dialog v-model="loading" persistent fullscreen>
-              <v-container fill-height>
-                <v-layout row justify-center align-center>
-                  <v-progress-circular indeterminate :size="70" :width="7" color="secondary"></v-progress-circular>
-                </v-layout>
-              </v-container>
-            </v-dialog>
-          </v-layout>
+          <loading-animation v-if="loading"></loading-animation>
 
             <v-carousel v-if="!loading && projects.length" v-bind="{'cycle': true}" class="carousel__shadow" interval="3000">
               <v-carousel-item v-for="project in projects" :key="project._id" :src="project.imageUrl" @click.native="goToProject(project._id)">
@@ -146,15 +138,17 @@ export default {
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
+  width: 100%;
+  padding: 15px;
 }
 
 #hero__content h1 {
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   margin-bottom: 15px;
 }
 
 #hero__content h3 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 400;
 }
 
@@ -162,7 +156,7 @@ export default {
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   text-align: left;
   margin: 0 auto 50px auto;
 }
@@ -172,7 +166,7 @@ export default {
   font-size: 1.4rem;
   background-color: white;
   border-radius: 5px;
-  max-width: 450px;
+  width: 100%;
   margin-bottom: 30px;
   box-shadow: 0 24px 16px 0 rgba(0, 0, 0, 0.4);
 }
@@ -186,12 +180,21 @@ export default {
 }
 
 @media (min-width: 768px){
+
+  #hero__content h1 {
+  font-size: 2.8rem;
+  }
+
+  #hero__content h3 {
+  font-size: 2rem;
+  }
+  
   #about__row{
     flex-direction: row;
   }
 
   .about__card{
-    width: 45%;
+    max-width: 45%;
     margin-bottom: 0;
   }
 }

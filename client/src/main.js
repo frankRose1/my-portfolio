@@ -4,21 +4,24 @@ import './plugins/vuetify';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import VueParticles from 'vue-particles'
+import VueParticles from 'vue-particles';
 
 import ApolloClient from 'apollo-boost';
 import VueApollo from 'vue-apollo';
 import FormAlert from './components/Shared/FormAlert.vue';
+import Loading from './components/Shared/Loading.vue';
+import { SERVER_URL } from './config';
 
 //regsiter form alert globally
 Vue.component('form-alert', FormAlert);
+Vue.component('loading-animation', Loading);
 
 Vue.use(VueApollo);
 Vue.use(VueParticles);
 
 //export client to be used in the store to fire off queries/mutations
 export const defaultClient = new ApolloClient({
-  uri: 'http://localhost:5000/graphql',
+  uri: SERVER_URL,
   fetchOptions: {
     credentials: 'include'
   },
@@ -32,17 +35,6 @@ export const defaultClient = new ApolloClient({
         authorization: localStorage.getItem('token')
       }
     });
-  },
-  onError: ({ graphQLErrors, networkError }) => {
-    if (networkError) {
-      console.log('[networkError]', networkError);
-    }
-
-    if (graphQLErrors) {
-      for (let err of graphQLErrors) {
-        console.dir(err);
-      }
-    }
   }
 });
 
@@ -52,7 +44,7 @@ Vue.config.productionTip = false;
 
 new Vue({
   //inject apollo in to components
-  provide: apolloProvider.provide(),
+  apolloProvider,
   router,
   store,
   render: h => h(App),

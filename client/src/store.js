@@ -9,7 +9,8 @@ import {
   POST_PROJECT,
   SEARCH_PROJECTS,
   SEND_EMAIL,
-  DELETE_PROJECT
+  DELETE_PROJECT,
+  FETCH_PROJECT_BY_ID
 } from './queries';
 
 Vue.use(Vuex);
@@ -18,6 +19,7 @@ export default new Vuex.Store({
   state: {
     projects: [],
     searchResults: [],
+    project: null,
     loading: false,
     admin: null,
     formError: null,
@@ -36,6 +38,10 @@ export default new Vuex.Store({
     setLoading(state, payload) {
       state.loading = payload;
     },
+    setProject(state, payload) {
+      state.project = payload;
+    },
+    clearProject: state => state.project = null,
     setAdmin(state, payload) {
       state.admin = payload;
     },
@@ -73,6 +79,22 @@ export default new Vuex.Store({
         })
         .catch(err => {
           console.log(err);
+        });
+    },
+    fetchProjectById({ commit }, payload) {
+      commit('clearProject');
+      commit('setLoading', true);
+      apolloClient
+        .query({
+          query: FETCH_PROJECT_BY_ID,
+          variables: payload
+        })
+        .then(({ data }) => {
+          commit('setLoading', false);
+          commit('setProject', data.fetchProjectById);
+        })
+        .catch(err => {
+          commit('setLoading', false);
         });
     },
     sendEmail({ commit }, payload) {
@@ -198,6 +220,7 @@ export default new Vuex.Store({
     admin: state => state.admin,
     formError: state => state.formError,
     searchResults: state => state.searchResults,
-    emailSent: state => state.emailSent
+    emailSent: state => state.emailSent,
+    project: state => state.project
   }
 });

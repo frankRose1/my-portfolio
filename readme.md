@@ -1,2 +1,2 @@
 # My Portfolio
-Currently in the process of refactoring my portfolio. The plan is to use Node/GraphQl on the backend and Vue/Apollo on the front end. The main change is going to be adding an admin interface for me to add/delete projects easily, where my current portfolio doen't have this option.
+Recently refactored my portfolio to a full stack application. I'm using Vue/GQL on the front end and node/GQL/MongoDB on the back end. The main change is an admin interface for me to add/delete projects easily, where my current portfolio doen't have this option.

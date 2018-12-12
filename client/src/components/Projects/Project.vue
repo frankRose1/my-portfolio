@@ -1,69 +1,72 @@
 <template>
-  <v-container  flexbox center>
-    <!-- Project card -->
-    <v-layout v-if="fetchProjectById" id="page__layout" row wrap>
-      <v-flex xs12>
-        <v-card>
-          <v-card-title>
-            <h1>{{fetchProjectById.title}}</h1>
-              <a v-if="fetchProjectById.githubLink" :href="fetchProjectById.githubLink" target="_blank" class="code__button">
-                <span><i class="devicon-github-plain github"></i></span>
-                View Code
-              </a>
-              <a v-if="fetchProjectById.demoLink" :href="fetchProjectById.demoLink" target="_blank" class="code__button">
-                <span><i class="fas fa-desktop"></i></span>
-                Live Demo
-              </a>
-            <v-spacer></v-spacer>
-            <v-icon @click="goToPrevPage" color="info" large>arrow_back</v-icon>
-          </v-card-title>
+  <v-container id="page__layout" flexbox center>
+    
+        <v-layout row wrap>
+          <v-flex xs12>
+            <loading-animation v-if="loading"></loading-animation>
+            <!-- <h3 v-else-if="error">Shoot, looks like we got an error: {{error.message}}</h3> -->
+            <!-- Project card -->
+            <v-card v-if="project">
+              <v-card-title>
+                <h1>{{project.title}}</h1>
+                  <a v-if="project.githubLink" :href="project.githubLink" target="_blank" class="code__button">
+                    <span><i class="devicon-github-plain github"></i></span>
+                    View Code
+                  </a>
+                  <a v-if="project.demoLink" :href="project.demoLink" target="_blank" class="code__button">
+                    <span><i class="fas fa-desktop"></i></span>
+                    Live Demo
+                  </a>
+                <v-spacer></v-spacer>
+                <v-icon @click="goToPrevPage" color="info" large>arrow_back</v-icon>
+              </v-card-title>
 
-          <v-tooltip right>
-            <span>Click to enlarge image</span>
-            <v-img @click="toggleImageDialog" slot="activator" style="cursor: pointer" :src="fetchProjectById.imageUrl" id="project__image"></v-img>
-          </v-tooltip>
+              <v-tooltip right>
+                <span>Click to enlarge image</span>
+                <v-img @click="toggleImageDialog" slot="activator" style="cursor: pointer" :src="project.imageUrl" id="project__image"></v-img>
+              </v-tooltip>
 
-          <!-- enlarged image -->
-          <v-dialog v-model="dialog">
-            <v-card>
-              <v-img :src="fetchProjectById.imageUrl" height="70vh"></v-img>
+              <!-- enlarged image -->
+              <v-dialog v-model="dialog">
+                <v-card>
+                  <v-img :src="project.imageUrl" height="70vh"></v-img>
+                </v-card>
+              </v-dialog>
+
+              <v-card-text>
+                <span v-for="(tag, index) in project.tags" :key="index">
+                  <v-chip class="mb-3" color="info" text-color="white">{{tag}}</v-chip>
+                </span>
+                <h3>{{project.description}}</h3>
+              </v-card-text>
+
             </v-card>
-          </v-dialog>
-
-          <v-card-text>
-            <span v-for="(tag, index) in fetchProjectById.tags" :key="index">
-              <v-chip class="mb-3" color="info" text-color="white">{{tag}}</v-chip>
-            </span>
-            <h3>{{fetchProjectById.description}}</h3>
-          </v-card-text>
-
-        </v-card>
-      </v-flex>
-    </v-layout>
+          </v-flex>
+        </v-layout>
 
   </v-container>
 </template>
 
 <script>
 import { FETCH_PROJECT_BY_ID } from "../../queries";
+import {mapGetters} from 'vuex'
 
 export default {
   name: "Project",
   props: ["projectId"],
   data(){
     return {
-      dialog: false
+      dialog: false,
+      fetchProjectByIdQuery: FETCH_PROJECT_BY_ID
     }
   },
-  apollo: {
-    fetchProjectById: {
-      query: FETCH_PROJECT_BY_ID,
-      variables() {
-        return {
-          projectId: this.projectId
-        };
-      }
-    }
+  computed: {
+    ...mapGetters(['project', 'loading'])
+  },
+  created(){
+    this.$store.dispatch('fetchProjectById', {
+      projectId: this.projectId
+    })
   },
   methods: {
     goToPrevPage(){
@@ -76,6 +79,17 @@ export default {
     }
   }
 };
+
+  // apollo: {
+  //   fetchProjectById: {
+  //     query: FETCH_PROJECT_BY_ID,
+  //     variables() {
+  //       return {
+  //         projectId: this.projectId
+  //       };
+  //     }
+  //   }
+  // },
 </script>
 
 <style scoped>

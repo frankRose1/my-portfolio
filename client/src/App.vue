@@ -52,7 +52,6 @@
       <v-card dark v-if="searchResults.length" id="search__card">
         <v-list>
           <v-list-tile v-for="result in searchResults" :key="result._id" @click="goToSearchResult(result._id)" >
-            <v-img :src="result.imageUrl" width="40px"></v-img>
             <v-list-tile-title>
               {{result.title}} -
               <span class="font-weight-thin">{{formatDescription(result.description)}}</span>
@@ -164,7 +163,7 @@ export default {
       });
     },
     formatDescription(desc){
-      return desc.length > 25 ? `${desc.slice(0, 25)}...` : desc;
+      return desc.length > 50 ? `${desc.slice(0, 50)}...` : desc;
     },
     goToSearchResult(resultId){
       //clear search term to remove the cards
@@ -191,6 +190,10 @@ export default {
   .main__title{
     font-size: 2.5rem;
     font-weight: 400;
+  }
+
+  main {
+    min-height: 70vh;
   }
 
   .main__title:after {

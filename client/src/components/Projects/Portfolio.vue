@@ -36,9 +36,9 @@
                     <v-list-tile-title class="text--primary">
                       {{formatDescription(project.description)}}
                     </v-list-tile-title>
-                    <v-list-tile-subtitle class="font-weight-thin">
+                    <h4 class="font-weight-thin">
                       Added {{formatDateAdded(project.dateAdded)}}
-                    </v-list-tile-subtitle>
+                    </h4>
                   </v-list-tile-content>
 
                   <v-list-tile-action >
@@ -104,7 +104,7 @@ export default {
       return moment(new Date(parseInt(date))).fromNow();
     },
     formatDescription(desc){
-      return desc.length > 25 ? `${desc.slice(0, 25)}...` : desc;
+      return desc.length > 50 ? `${desc.slice(0, 50)}...` : desc;
     },
     showMore(){
       this.pageNum += 1;
