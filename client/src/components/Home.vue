@@ -58,13 +58,15 @@
           <v-flex xs12>
 
           <!-- Loading -->
-          <loading-animation v-if="loading"></loading-animation>
-
-            <v-carousel v-if="!loading && projects.length" v-bind="{'cycle': true}" class="carousel__shadow" interval="3000">
-              <v-carousel-item v-for="project in projects" :key="project._id" :src="project.imageUrl" @click.native="goToProject(project._id)">
-                <h1 id="carousel__title">{{project.title}}</h1>
-              </v-carousel-item>
-            </v-carousel>
+          <div v-if="loading" style="overflow:hidden">
+            <loading-animation></loading-animation>
+          </div>
+          <!-- corousel -->
+          <v-carousel v-if="!loading && projects.length" v-bind="{'cycle': true}" class="carousel__shadow" interval="3000">
+            <v-carousel-item v-for="project in projects" :key="project._id" :src="project.imageUrl" @click.native="goToProject(project._id)">
+              <h1 id="carousel__title">{{project.title}}</h1>
+            </v-carousel-item>
+          </v-carousel>
 
           </v-flex>
         </v-container>
@@ -105,6 +107,7 @@ export default {
   padding-top: 15px;
   padding-bottom: 120px;
 }
+
 
 .carousel__shadow{
   box-shadow: 0 18px 29px 0 rgba(0, 0, 0, 0.5);

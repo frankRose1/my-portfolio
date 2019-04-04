@@ -20,13 +20,13 @@
               <h3>Full Stack JavaScript</h3>
               <p>The projects I've built with JavaScript have really shown me how awesome of a language it is! 
                 After building command line apps, to backend APIs, and working with front-end libraries like React, 
-                my passion for becoming a better JavaScript developer grows with each project I build.</p>
+                my passion for becoming a better developer grows with each project I build.</p>
           </article>
           <article class="skill-card skill-card-blue">
               <i class="fas fa-graduation-cap"></i>
               <h3>Continued Learning</h3>
               <p>I'm committed to learning everything I can about the wonderful world of web development! I'm working on new projects all the time to challenge myself and become a better developer.
-                Currently, I'm enjoying building client and server side applications with GraphQL.
+                Currently, I'm learning python and enjoying building client and server side applications with GraphQL.
               </p>
           </article>
           <article class="skill-card skill-card-orange">

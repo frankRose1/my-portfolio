@@ -5,10 +5,7 @@ const Queries = {
     const projects = await Project.find({})
       .sort({ dateAdded: -1 })
       .limit(10);
-    return projects.map(project => ({
-      ...project._doc,
-      _id: project._id.toString()
-    }));
+    return projects;
   },
   async getCurrentAdmin(_, args, { Admin, token }) {
     const { adminData } = await checkAuthToken(token);
@@ -43,7 +40,7 @@ const Queries = {
     if (!project) {
       throw new Error('No project found with that ID!');
     }
-    return { ...project._doc, _id: project._id.toString() };
+    return project;
   },
   async searchProjects(_, { searchTerm }, { Project }) {
     if (searchTerm) {

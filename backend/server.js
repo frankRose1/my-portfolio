@@ -1,3 +1,4 @@
+require('dotenv').config({ path: '.env' });
 const mongoose = require('mongoose');
 const { ApolloServer } = require('apollo-server');
 const port = process.env.PORT || 4000;
@@ -9,9 +10,13 @@ const Project = require('./models/Project');
 
 const server = new ApolloServer({
   typeDefs,
-  context: {
-    Admin,
-    Project
+  context: ({ req }) => {
+    const token = req.headers.authorization;
+    return {
+      Admin,
+      Project,
+      token
+    };
   },
   resolvers: {
     Query,

@@ -64,9 +64,14 @@ export default {
     ...mapGetters(['project', 'loading'])
   },
   created(){
-    this.$store.dispatch('fetchProjectById', {
-      projectId: this.projectId
-    })
+    this.fetchProject(this.projectId)
+  },
+  watch: {
+    projectId(newValue, oldValue){
+      if (newValue !== oldValue) {
+        this.fetchProject(newValue)
+      }
+    }
   },
   methods: {
     goToPrevPage(){
@@ -76,20 +81,14 @@ export default {
       if(window.innerWidth > 500){
         this.dialog = !this.dialog;
       }
+    },
+    fetchProject(id){
+      this.$store.dispatch('fetchProjectById', {
+        projectId: id
+      })
     }
   }
 };
-
-  // apollo: {
-  //   fetchProjectById: {
-  //     query: FETCH_PROJECT_BY_ID,
-  //     variables() {
-  //       return {
-  //         projectId: this.projectId
-  //       };
-  //     }
-  //   }
-  // },
 </script>
 
 <style scoped>
