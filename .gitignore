@@ -1,8 +1,8 @@
 node_modules/
 variables.env
 now.json
-backend/.env
-backend/node_modules/
-frontend/node_modules/
-frontend/config.js
-frontend/.next/
+react-refactor/backend/.env
+react-refactor/backend/node_modules/
+react-refactor/frontend/node_modules/
+react-refactor/frontend/config.js
+react-refactor/frontend/.next/

@@ -19,14 +19,14 @@
               <i class="fas fa-code"></i>
               <h3>Full Stack JavaScript</h3>
               <p>The projects I've built with JavaScript have really shown me how awesome of a language it is! 
-                After building command line apps, to restful APIs, and working with front-end libraries such as React, 
+                After building command line apps, to restful APIs, and working with front end libraries such as React, 
                 my passion for becoming a better developer grows with each project I build.</p>
           </article>
           <article class="skill-card skill-card-blue">
               <i class="fas fa-graduation-cap"></i>
               <h3>Continued Learning</h3>
-              <p>I'm committed to learning everything I can about programming on the web! I'm working on new projects all the time to challenge myself and become a better developer.
-                Currently, I'm learning python and enjoying building client and server side applications with GraphQL.
+              <p>I'm committed to learning everything I can about programming on the web. I'm working on new projects all the time to challenge myself and become a better developer.
+                Currently, I'm expanding my knowledge of python and enjoying building client and server side applications with GraphQL.
               </p>
           </article>
           <article class="skill-card skill-card-orange">
@@ -48,10 +48,10 @@ export default {
   computed: {
     skillIcons(){
       return [
-        {icon: 'devicon-html5-plain colored' , text: 'HTML5' , liClass: 'html'},
-        {icon: 'devicon-css3-plain colored' , text: 'CSS3' , liClass: 'css'},
+        {icon: 'devicon-html5-plain colored' , text: 'HTML' , liClass: 'html'},
+        {icon: 'devicon-css3-plain colored' , text: 'CSS' , liClass: 'css'},
         {icon: 'devicon-javascript-plain colored' , text: 'JavaScript' , liClass: 'js'},
-        {icon: 'devicon-jquery-plain colored' , text: 'jQuery' , liClass: 'jquery'},
+        {icon: 'devicon-python-plain colored' , text: 'python' , liClass: 'pyt'},
         {icon: 'devicon-git-plain colored' , text: 'git' , liClass: 'git'},
         {icon: 'devicon-gulp-plain colored' , text: 'Gulp' , liClass: 'gulp'},
         {icon: 'devicon-sequelize-plain colored' , text: 'Sequelize' , liClass: 'sequelize'},
@@ -85,6 +85,7 @@ export default {
   align-items: center;
   width: 100%;
   list-style: none;
+  min-height: 380px;
 }
 
 .skill-icons li {
@@ -248,7 +249,7 @@ export default {
     right: 55px;
   }
 
-  li.jquery {
+  li.react {
     bottom: 10px;
     left: 25%;
   }
@@ -270,7 +271,7 @@ export default {
     top: 20px;
     right: 10px;
   }
-  li.react {
+  li.pyt {
     bottom: 20px;
     right: 10px;
   }
