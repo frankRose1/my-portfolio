@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-size: 1.5rem;
     line-height: 2;
+    background-color: #E3E3EE;
     font-family: 'Roboto', 'sans-serif';
   }
   a {

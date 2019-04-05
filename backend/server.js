@@ -21,6 +21,10 @@ const server = new ApolloServer({
   resolvers: {
     Query,
     Mutation
+  },
+  cors: {
+    credentials: true,
+    origin: process.env.FRONTEND_URL
   }
 });
 

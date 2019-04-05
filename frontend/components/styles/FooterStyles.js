@@ -37,8 +37,8 @@ const FooterStyles = styled.footer`
   .gh-hover:hover {
     color: #c9510c;
   }
-  .twitter:hover {
-    color: #1da1f2;
+  .fcc:hover {
+    color: #acd157;
   }
   .fa-stack-overflow:hover {
     color: coral;

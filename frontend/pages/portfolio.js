@@ -1,3 +1,5 @@
-const PortfolioPage = () => <div>This is the portfolio</div>;
+import Portfolio from '../components/Portfolio';
+
+const PortfolioPage = () => <Portfolio />;
 
 export default PortfolioPage;

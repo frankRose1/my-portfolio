@@ -19,21 +19,21 @@
               <i class="fas fa-code"></i>
               <h3>Full Stack JavaScript</h3>
               <p>The projects I've built with JavaScript have really shown me how awesome of a language it is! 
-                After building command line apps, to backend APIs, and working with front-end libraries like React, 
+                After building command line apps, to restful APIs, and working with front-end libraries such as React, 
                 my passion for becoming a better developer grows with each project I build.</p>
           </article>
           <article class="skill-card skill-card-blue">
               <i class="fas fa-graduation-cap"></i>
               <h3>Continued Learning</h3>
-              <p>I'm committed to learning everything I can about the wonderful world of web development! I'm working on new projects all the time to challenge myself and become a better developer.
+              <p>I'm committed to learning everything I can about programming on the web! I'm working on new projects all the time to challenge myself and become a better developer.
                 Currently, I'm learning python and enjoying building client and server side applications with GraphQL.
               </p>
           </article>
           <article class="skill-card skill-card-orange">
               <i class="fas fa-desktop"></i>
               <h3>Web Development</h3>
-              <p>Building web apps is what I love to do. From working with databases on the backend to 
-                building a responsive frontend, I enjoy all of it! My goal on every project is to put 
+              <p>Building web apps is my primary focus. From working with databases on the back end to 
+                building a responsive front end, I enjoy all of it! My goal on every project is to put 
                 my best foot forward and give the end user a great final product. 
                 Check out my <a href="https://github.com/frankRose1" target="_blank" class="inline-gh">github</a> to see what I'm working on next.</p>
           </article>

@@ -5,8 +5,11 @@ const Footer = () => (
     <div>
       <ul className='social-icons'>
         <li>
-          <a href='https://twitter.com/devs_fr' target='_blank'>
-            <i className='devicon-twitter-plain twitter' />
+          <a
+            href='https://www.freecodecamp.org/forum/u/frankRose1/activity'
+            target='_blank'
+          >
+            <i className='fab fa-free-code-camp fcc' />
           </a>
         </li>
         <li>

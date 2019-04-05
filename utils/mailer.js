@@ -1,20 +1,9 @@
-const nodemailer = require('nodemailer');
-
-const transporter = nodemailer.createTransport({
-  host: process.env.MAIL_HOST,
-  port: parseInt(process.env.MAIL_PORT),
-  auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASS
-  }
-});
-
 /**
  * senderPhone and senderName are optional.
  */
-const formatEmail = ({ senderName, senderPhone, comments }) => {
+const formatEmail = ({ senderName, senderPhone, senderEmail, comments }) => {
   const from = senderName ? `From ${senderName}` : '';
-  const phone = senderPhone ? `Phone ${senderPhone}` : '';
+  const phone = senderPhone ? `Phone: ${senderPhone}` : '';
   return `
   <div style="
     border: 1px solid black;
@@ -26,10 +15,10 @@ const formatEmail = ({ senderName, senderPhone, comments }) => {
     <p>Hello, </p>
     <p>${comments}</p>
     <p>${from}</p>
+    <p>Email: ${senderEmail}</p>
     <p>${phone}</p>
   </div>
 `;
 };
 
-exports.transporter = transporter;
 exports.formatEmail = formatEmail;

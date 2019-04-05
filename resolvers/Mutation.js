@@ -1,6 +1,11 @@
 const bcrypt = require('bcryptjs');
-const { transporter, formatEmail } = require('../utils/mailer');
+const mailgun = require('mailgun-js')({
+  apiKey: process.env.MAILGUN_API_KEY,
+  domain: process.env.MAILGUN_DOMAIN
+});
+const { formatEmail } = require('../utils/mailer');
 const { createToken, checkAuthToken } = require('../utils/auth');
+const from = `Frank Rose User Contact <${process.env.ADMIN_EMAIL}>`;
 
 const Mutations = {
   async signinAdmin(_, { email, password }, { Admin }) {
@@ -41,15 +46,15 @@ const Mutations = {
     { senderEmail, senderName, subject, senderPhone, comments },
     ctx
   ) {
-    const emailHtml = formatEmail({ senderName, senderPhone, comments });
-    const emailRes = await transporter.sendMail({
-      from: senderEmail,
-      to: process.env.ADMIN_EMAIL,
+    const html = formatEmail({ senderName, senderPhone, senderEmail, comments });
+    const data = {
+      from,
+      html,
       subject,
-      html: emailHtml
-    });
-
-    return { message: 'Your message has been sent!' };
+      to: process.env.ADMIN_EMAIL,
+    };
+    await mailgun.messages().send(data);
+    return { message: 'Your email has been sent!' };
   }
 };
 

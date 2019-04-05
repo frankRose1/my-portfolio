@@ -95,7 +95,7 @@
     <footer>
         <v-container text-xs-center>
             <ul class="social-icons">
-                <li><a href="https://twitter.com/devs_fr" target="_blank"><i class="devicon-twitter-plain twitter"></i></a></li>
+                <li><a href='https://www.freecodecamp.org/forum/u/frankRose1/activity' target='_blank'><i class="fab fa-free-code-camp fcc fcc"></i></a></li>
                 <li><a href="https://github.com/frankRose1" target="_blank"><i class="devicon-github-plain github gh-hover"></i></a></li>
                 <li><a href="https://stackexchange.com/users/14858932/frank-rose" target="_blank"><i class="fab fa-stack-overflow"></i></a></li>
             </ul>
@@ -259,8 +259,8 @@ export default {
   .gh-hover:hover {
     color: #c9510c;
   }
-  .twitter:hover {
-    color: #1da1f2;
+  .fcc:hover {
+    color: #acd157;
   }
   .fa-stack-overflow:hover {
     color: coral;
