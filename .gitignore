@@ -6,3 +6,5 @@ react-refactor/backend/node_modules/
 react-refactor/frontend/node_modules/
 react-refactor/frontend/config.js
 react-refactor/frontend/.next/
+react-refactor/.vscode/
+react-refactor/server/db.sqlite3
