@@ -40,7 +40,6 @@ const Footer = ({ classes }) => {
                 <i className={`${link.iconClasses} ${classes.icon}`} />
               </a>
             )}
-            {/* <span /> */}
           </div>
         ))}
       </div>
@@ -65,8 +64,8 @@ const styles = theme => ({
     backgroundImage: `linear-gradient(to bottom, #b0bec5 50%, ${
       theme.palette.info.main
     } 50%)`,
-    height: '200px',
     borderRight: '1px solid #f3f6f7',
+    height: '200px',
     transition: 'background-position 0.3s ease-in',
     '&:hover': {
       backgroundPosition: '0 100%'
