@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import withRoot from './withRoot';
+import PageTransition from './components/PageTransition';
 import Home from './components/Home';
 import Skills from './components/Skills';
 import Portfolio from './components/Portfolio';
@@ -14,13 +15,15 @@ const Root = () => {
     <Router>
       <Header />
       <main style={{ minHeight: '70vh' }}>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/skills' component={Skills} />
-          <Route path='/portfolio' component={Portfolio} />
-          <Route path='/contact' component={Contact} />
-          <Route component={NotFound} />
-        </Switch>
+        <PageTransition>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/skills' component={Skills} />
+            <Route path='/portfolio' component={Portfolio} />
+            <Route path='/contact' component={Contact} />
+            <Route component={NotFound} />
+          </Switch>
+        </PageTransition>
       </main>
       <Footer />
     </Router>

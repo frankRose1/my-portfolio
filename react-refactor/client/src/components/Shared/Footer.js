@@ -40,7 +40,7 @@ const Footer = ({ classes }) => {
                 <i className={`${link.iconClasses} ${classes.icon}`} />
               </a>
             )}
-            <span className={classes.overlay} />
+            {/* <span /> */}
           </div>
         ))}
       </div>
@@ -61,11 +61,16 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#b0bec5',
+    backgroundSize: '100% 200%',
+    backgroundImage: `linear-gradient(to bottom, #b0bec5 50%, ${
+      theme.palette.info.main
+    } 50%)`,
     height: '200px',
     borderRight: '1px solid #f3f6f7',
-    position: 'relative',
-    overflow: 'hidden'
+    transition: 'background-position 0.3s ease-in',
+    '&:hover': {
+      backgroundPosition: '0 100%'
+    }
   },
   link: {
     cursor: 'pointer',
@@ -81,61 +86,7 @@ const styles = theme => ({
     color: '#f3f6f7',
     margin: '0',
     padding: '10px 0px'
-  },
-  overlay: {
-    position: 'absolute',
-    backgroundColor: 'green',
-    top: 0,
-    left: 0
   }
 });
 
 export default withStyles(styles)(Footer);
-
-// const styles = theme => ({
-//   root: {
-//     background: theme.palette.dark.main,
-//     color: '#fff',
-//     padding: '2rem'
-//   },
-//   container: {
-//     margin: '0 auto',
-//     textAlign: 'center'
-//   },
-//   socialList: {
-//     display: 'flex',
-//     alignItems: 'center',
-//     justifyContent: 'space-around',
-//     flexWrap: 'wrap',
-//     maxWidth: '300px',
-//     margin: '20px auto',
-//     listStyle: 'none',
-//     padding: '0px'
-//   },
-//   link: {
-//     textDecoration: 'none',
-//     color: '#FFF'
-//   },
-//   icon: {
-//     fontSize: '35px',
-//     transition: 'color 0.3s ease-in',
-//     '&:hover': {
-//       transform: 'translateY(-1px)'
-//     }
-//   },
-//   fcc: {
-//     '&:hover': {
-//       color: '#acd157'
-//     }
-//   },
-//   github: {
-//     '&:hover': {
-//       color: '#c9510c'
-//     }
-//   },
-//   stack: {
-//     '&:hover': {
-//       color: '#1e88e5'
-//     }
-//   }
-// });

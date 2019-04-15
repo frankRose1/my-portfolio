@@ -17,8 +17,7 @@ const styles = theme => ({
   root: {
     height: '100vh',
     width: '100%',
-    backgroundColor: 'linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6))',
-    backgroundImage: `url(${HeroImage})`,
+    backgroundImage: `linear-gradient( rgba(0, 0, 0, .65), rgba(0, 0, 0, .65) ), url(${HeroImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',

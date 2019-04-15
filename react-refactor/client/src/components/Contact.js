@@ -170,7 +170,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up('md')]: {
-      width: 400,
+      width: 550,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
