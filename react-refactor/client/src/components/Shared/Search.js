@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { Mutation } from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import { SEARCH_PROJECTS_QUERY } from '../../graphql';
 
 const Search = ({ classes }) => {
   const [search, setSearch] = useState('');

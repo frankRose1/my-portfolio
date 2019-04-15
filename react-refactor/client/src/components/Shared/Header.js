@@ -9,7 +9,7 @@ import Search from './Search';
 const Header = ({ classes }) => {
   return (
     <AppBar position='static' className={classes.root}>
-      <Toolbar className={classes.nav}>
+      <Toolbar>
         {/* Logo */}
         <Link to='/' className={classes.grow}>
           <Typography className={classes.logo} variant='headline' noWrap>

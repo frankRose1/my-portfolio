@@ -1,5 +1,15 @@
 import { gql } from 'apollo-boost';
 
+const SEARCH_PROJECTS_QUERY = gql`
+  query searchProjectsQuery($search: String) {
+    searchProjects(search: $search) {
+      title
+      description
+      imageUrl
+    }
+  }
+`;
+
 const SEND_EMAIL_MUTATION = gql`
   mutation sendEmailMutation(
     $email: String!
@@ -20,4 +30,4 @@ const SEND_EMAIL_MUTATION = gql`
   }
 `;
 
-export { SEND_EMAIL_MUTATION };
+export { SEND_EMAIL_MUTATION, SEARCH_PROJECTS_QUERY };
