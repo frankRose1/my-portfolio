@@ -5,6 +5,7 @@ import PageTransition from './components/PageTransition';
 import Home from './components/Home';
 import Skills from './components/Skills';
 import Portfolio from './components/Portfolio';
+import ProjectDetail from './components/Portfolio/ProjectDetail';
 import Contact from './components/Contact';
 import Header from './components/Shared/Header';
 import Footer from './components/Shared/Footer';
@@ -21,6 +22,7 @@ const Root = () => {
             <Route path='/skills' component={Skills} />
             <Route path='/portfolio' component={Portfolio} />
             <Route path='/contact' component={Contact} />
+            <Route path='/project/:projectId' component={ProjectDetail} />
             <Route component={NotFound} />
           </Switch>
         </PageTransition>

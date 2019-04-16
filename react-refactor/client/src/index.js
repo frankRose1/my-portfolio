@@ -4,6 +4,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import Root from './Root';
 import { SERVER_URL } from './config';
+import { LOCAL_STATE_QUERY } from './graphql';
 import * as serviceWorker from './serviceWorker';
 
 const client = new ApolloClient({
@@ -15,6 +16,22 @@ const client = new ApolloClient({
         Authorizaton: `JWT ${token}`
       }
     });
+  },
+  clientState: {
+    resolvers: {
+      Mutation: {
+        toggleSearch(_, variables, { cache }) {
+          // take the earchOpen bool from cache, toggle it, then write back to cache
+          const { searchOpen } = cache.readQuery({ query: LOCAL_STATE_QUERY });
+          const data = { data: { searchOpen: !searchOpen } };
+          cache.writeData(data);
+          return data;
+        }
+      }
+    },
+    defaults: {
+      searchOpen: false
+    }
   }
 });
 

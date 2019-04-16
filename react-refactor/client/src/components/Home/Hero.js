@@ -6,7 +6,7 @@ const Hero = ({ classes }) => (
   <section className={classes.root}>
     <div className={classes.intro}>
       <h1 className={classes.title}>
-        FullStack Developer With a Love For Code
+        Full Stack Developer With A Love For Code
       </h1>
       <h3 className={classes.subTitle}>Let's Create Something Amazing</h3>
     </div>
