@@ -10,7 +10,6 @@ import Contact from './components/Contact';
 import Header from './components/Shared/Header';
 import Footer from './components/Shared/Footer';
 import NotFound from './components/Shared/NotFound';
-import Loading from './components/Shared/Loading';
 
 const Root = () => {
   return (
@@ -24,7 +23,6 @@ const Root = () => {
             <Route path='/portfolio' component={Portfolio} />
             <Route path='/contact' component={Contact} />
             <Route path='/project/:projectId' component={ProjectDetail} />
-            <Route path='/loading' component={Loading} />
             <Route component={NotFound} />
           </Switch>
         </PageTransition>

@@ -1,5 +1,5 @@
 <template>
-  <v-app style="background: #E3E3EE">
+  <v-app style="background: #F6F9FC">
 
     <!-- Side Nav -->
     <v-navigation-drawer app fixed temporary v-model="sideNav">
@@ -93,14 +93,37 @@
 
     <!-- footer -->
     <footer>
-        <v-container text-xs-center>
-            <ul class="social-icons">
-                <li><a href='https://www.freecodecamp.org/forum/u/frankRose1/activity' target='_blank'><i class="fab fa-free-code-camp fcc fcc"></i></a></li>
-                <li><a href="https://github.com/frankRose1" target="_blank"><i class="devicon-github-plain github gh-hover"></i></a></li>
-                <li><a href="https://stackexchange.com/users/14858932/frank-rose" target="_blank"><i class="fab fa-stack-overflow"></i></a></li>
-            </ul>
-            <p class="copyright">&copy; Frank Rosendorf {{new Date().getFullYear()}} | All Rights Reserved</p>
-        </v-container>
+      <div class='links'>
+        <div class='iconCard'>
+            <a
+              href='https://www.freecodecamp.org/forum/u/frankRose1/activity'
+              target='_blank'
+              rel='noopener noreferrer'>
+              <i class='fab fa-free-code-camp'></i>
+            </a>
+        </div>
+        <div class='iconCard'>
+            <a href='https://github.com/frankRose1' target='_blank' rel='noopener noreferrer'>
+              <i class='devicon-github-plain'></i>
+            </a>
+        </div>
+          <div class='iconCard'>
+              <a 
+                href='https://stackexchange.com/users/14858932/frank-rose'
+                target='_blank'
+                rel='noopener noreferrer'>
+                <i class='fab fa-stack-overflow'></i>
+              </a>
+          </div>
+          <div class='iconCard'>
+              <router-link to="/contact" class='link' style="cursor: pointer">
+                <i class='fas fa-envelope'></i>
+              </router-link>
+          </div>
+      </div>
+      <p class='copyRight'>
+        &copy; Frank Rosendorf {{new Date().getFullYear()}} | All Rights Reserved
+      </p>
     </footer>
 
   </v-app>
@@ -130,8 +153,8 @@ export default {
     horizontalNavItems() {
       let items = [
         {icon: 'code', title: 'Skills', link: '/skills'},
-        {icon: 'brush', title: 'Portfolio', link: '/portfolio'},
-        {icon: 'chat', title: 'Contact', link: '/contact'},
+        {icon: 'folder', title: 'Portfolio', link: '/portfolio'},
+        {icon: 'mail', title: 'Contact', link: '/contact'},
       ]
       if(this.admin) {
         items.push({icon: 'expand', title: 'Dashboard', link: '/admin/dashboard'});
@@ -141,8 +164,8 @@ export default {
     sideNavItems() {
       let items = [
         {icon: 'code', title: 'Skills', link: '/skills'},
-        {icon: 'brush', title: 'Portfolio', link: '/portfolio'},
-        {icon: 'chat', title: 'Contact', link: '/contact'},
+        {icon: 'folder', title: 'Portfolio', link: '/portfolio'},
+        {icon: 'mail', title: 'Contact', link: '/contact'},
       ];
       if (this.admin) {
         items.push({icon: 'expand', title: 'Dashboard', link: '/admin/dashboard'});
@@ -229,40 +252,53 @@ export default {
     left: 0%;
   }
 
-  footer {
-    background-color: #222;
-    color: white;
-    padding: 30px;
+  .links {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 
-  footer .social-icons {
-    list-style: none;
+  .iconCard {
     display: flex;
-    width: 100%;
-    max-width: 280px;
-    flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
-    margin: 20px auto;
+    justify-content: center;
+    background-size: 100% 200%;
+    background-image: linear-gradient(to bottom, #b0bec5 50%, #3eCF8E 50%);
+    border-bottom: 1px solid #f3f6f7;
+    height: 80px;
+    transition: background-position 0.3s ease-in;
   }
 
-  footer .social-icons a {
+
+  .iconCard:hover {
+      background-position: 0 100%;
+    }
+
+  .iconCard a {
+    cursor: pointer;
     text-decoration: none;
-    color: white;
+    color: #f3f6f7;
   }
 
-  .social-icons li i {
-    font-size: 35px;
-    transition: color 0.3s ease-in;
+  .iconCard i {
+    font-size: 60px;
   }
 
-  .gh-hover:hover {
-    color: #c9510c;
+  .copyRight {
+    background-color: #6B7C93;
+    text-align: center;
+    color: #f3f6f7;
+    margin: 0;
+    padding: 10px 0px;
   }
-  .fcc:hover {
-    color: #acd157;
-  }
-  .fa-stack-overflow:hover {
-    color: coral;
+  @media (min-width: 500px){
+    .links {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .iconCard {
+      height: 200px;
+      border-right: 1px solid #f3f6f7;
+      border-bottom: 0;
+    }
   }
 </style>

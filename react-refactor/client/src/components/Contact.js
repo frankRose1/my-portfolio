@@ -44,7 +44,13 @@ const Contact = ({ classes, history }) => {
         </Typography>
         <Mutation
           mutation={SEND_EMAIL_MUTATION}
-          variables={{ email, name, subject, comments, phone }}
+          variables={{
+            senderEmail: email,
+            senderName: name,
+            subject,
+            comments,
+            senderPhone: phone
+          }}
           onCompleted={data => {
             console.log(data);
             setShowDialog(true);

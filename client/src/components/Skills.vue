@@ -1,42 +1,61 @@
 <template>
-  <v-container id="page__layout" text-xs-center>
+  <v-container
+    id="page__layout"
+    text-xs-center
+  >
     <!-- Page Title -->
-    <v-layout mb-3 row wrap>
-      <v-flex xs12 sm6 offset-sm3>
-        <h2 class="main__title">Here's What I Know</h2>
+    <v-layout
+      mb-3
+      row
+      wrap
+    >
+      <v-flex
+        xs12
+        sm6
+        offset-sm3
+      >
+        <h2 class="main__title">Here's Some Of What I Know</h2>
       </v-flex>
     </v-layout>
     <!-- Skills Display -->
     <div class="skills-col">
       <ul class="skill-icons">
-          <li v-for="item in skillIcons" :key="item.text" :class="item.liClass">
-            <i :class="item.icon"></i>
-            <p>{{item.text}}</p>
-          </li>
+        <li
+          v-for="item in skillIcons"
+          :key="item.text"
+          :class="item.liClass"
+        >
+          <i :class="item.icon"></i>
+          <p>{{item.text}}</p>
+        </li>
       </ul>
       <div class="skill-cards">
-          <article class="skill-card skill-card-red">
-              <i class="fas fa-code"></i>
-              <h3>Full Stack JavaScript</h3>
-              <p>The projects I've built with JavaScript have really shown me how awesome of a language it is! 
-                After building command line apps, to restful APIs, and working with front end libraries such as React, 
-                my passion for becoming a better developer grows with each project I build.</p>
-          </article>
-          <article class="skill-card skill-card-blue">
-              <i class="fas fa-graduation-cap"></i>
-              <h3>Continued Learning</h3>
-              <p>I'm committed to learning everything I can about programming on the web. I'm working on new projects all the time to challenge myself and become a better developer.
-                Currently, I'm expanding my knowledge of python and enjoying building client and server side applications with GraphQL.
-              </p>
-          </article>
-          <article class="skill-card skill-card-orange">
-              <i class="fas fa-desktop"></i>
-              <h3>Web Development</h3>
-              <p>Building web apps is my primary focus. From working with databases on the back end to 
-                building a responsive front end, I enjoy all of it! My goal on every project is to put 
-                my best foot forward and give the end user a great final product. 
-                Check out my <a href="https://github.com/frankRose1" target="_blank" class="inline-gh">github</a> to see what I'm working on next.</p>
-          </article>
+        <article class="skill-card skill-card-red">
+          <i class="fas fa-code"></i>
+          <h3>Full Stack JavaScript</h3>
+          <p>The projects I've built with JavaScript have really shown me how awesome of a language it is!
+            After building command line apps, to restful APIs, and working with front end libraries such as React,
+            my passion for becoming a better developer grows with each project I build.</p>
+        </article>
+        <article class="skill-card skill-card-blue">
+          <i class="fas fa-graduation-cap"></i>
+          <h3>Continued Learning</h3>
+          <p>I'm committed to learning everything I can about programming on the web. I'm working on new projects all the time to challenge myself and become a better developer.
+            Currently, I'm expanding my knowledge of python and enjoying building client and server side applications with GraphQL.
+          </p>
+        </article>
+        <article class="skill-card skill-card-orange">
+          <i class="fas fa-desktop"></i>
+          <h3>Web Development</h3>
+          <p>Building web apps is my primary focus. From working with databases on the back end to
+            building a responsive front end, I enjoy all of it! My goal on every project is to put
+            my best foot forward and give the end user a great final product.
+            Check out my <a
+              href="https://github.com/frankRose1"
+              target="_blank"
+              class="inline-gh"
+            >github</a> to see what I'm working on next.</p>
+        </article>
       </div>
     </div>
   </v-container>
@@ -44,30 +63,58 @@
 
 <script>
 export default {
-  name: 'Skills',
+  name: "Skills",
   computed: {
-    skillIcons(){
+    skillIcons() {
       return [
-        {icon: 'devicon-html5-plain colored' , text: 'HTML' , liClass: 'html'},
-        {icon: 'devicon-css3-plain colored' , text: 'CSS' , liClass: 'css'},
-        {icon: 'devicon-javascript-plain colored' , text: 'JavaScript' , liClass: 'js'},
-        {icon: 'devicon-python-plain colored' , text: 'python' , liClass: 'pyt'},
-        {icon: 'devicon-git-plain colored' , text: 'git' , liClass: 'git'},
-        {icon: 'devicon-gulp-plain colored' , text: 'Gulp' , liClass: 'gulp'},
-        {icon: 'devicon-sequelize-plain colored' , text: 'Sequelize' , liClass: 'sequelize'},
-        {icon: 'devicon-nodejs-plain colored' , text: 'Node.js' , liClass: 'node'},
-        {icon: 'devicon-express-original colored' , text: 'Express' , liClass: 'express'},
-        {icon: 'devicon-mongodb-plain colored' , text: 'MongoDB' , liClass: 'mongo'},
-        {icon: 'devicon-react-original colored' , text: 'React' , liClass: 'react'},
-        {icon: 'devicon-vuejs-plain colored' , text: 'Vue' , liClass: 'vue'},
-      ]
+        { icon: "devicon-html5-plain colored", text: "HTML", liClass: "html" },
+        { icon: "devicon-css3-plain colored", text: "CSS", liClass: "css" },
+        {
+          icon: "devicon-javascript-plain colored",
+          text: "JavaScript",
+          liClass: "js"
+        },
+        {
+          icon: "devicon-python-plain colored",
+          text: "python",
+          liClass: "pyt"
+        },
+        { icon: "devicon-git-plain colored", text: "git", liClass: "git" },
+        { icon: "devicon-django-plain colored", text: "django", liClass: "django" },
+        { icon: "devicon-gulp-plain colored", text: "Gulp", liClass: "gulp" },
+        {
+          icon: "devicon-sequelize-plain colored",
+          text: "Sequelize",
+          liClass: "sequelize"
+        },
+        {
+          icon: "devicon-nodejs-plain colored",
+          text: "Node.js",
+          liClass: "node"
+        },
+        {
+          icon: "devicon-express-original colored",
+          text: "Express",
+          liClass: "express"
+        },
+        {
+          icon: "devicon-mongodb-plain colored",
+          text: "MongoDB",
+          liClass: "mongo"
+        },
+        {
+          icon: "devicon-react-original colored",
+          text: "React",
+          liClass: "react"
+        },
+        { icon: "devicon-vuejs-plain colored", text: "Vue", liClass: "vue" }
+      ];
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
 /* SKILLS SECTION START */
 .skills-col {
   display: flex;
@@ -142,7 +189,7 @@ export default {
 }
 
 .skill-card h3::after {
-  content: '';
+  content: "";
   background-color: #222;
   display: block;
   margin: 15px auto;
@@ -156,27 +203,27 @@ export default {
 }
 
 .skill-card-red {
-  border-top: 10px solid #F25F5C;
+  border-top: 10px solid #3ecf8e;
 }
 
 .skill-card-red i {
-  color: #F25F5C;
+  color: #3ecf8e;
 }
 
 .skill-card-blue {
-  border-top: 10px solid #357edd;
+  border-top: 10px solid #6772e5;
 }
 
 .skill-card-blue i {
-  color: #357edd;
+  color: #6772e5;
 }
 
 .skill-card-orange {
-  border-top: 10px solid #f09233;
+  border-top: 10px solid #ffcf56;
 }
 
 .skill-card-orange i {
-  color: #f09233;
+  color: #ffcf56;
 }
 
 .inline-gh {
@@ -193,8 +240,8 @@ export default {
   border-bottom: 1px solid #ac4103;
 }
 
-@media(min-width: 768px){
-    .skill-cards {
+@media (min-width: 768px) {
+  .skill-cards {
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -284,7 +331,11 @@ export default {
     top: 150px;
     left: 35%;
   }
-}
 
+  li.django {
+    bottom: 75px;
+    left: 45%;
+  }
+}
 </style>
 

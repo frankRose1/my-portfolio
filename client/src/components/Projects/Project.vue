@@ -4,7 +4,6 @@
         <v-layout row wrap>
           <v-flex xs12>
             <loading-animation v-if="loading"></loading-animation>
-            <!-- <h3 v-else-if="error">Shoot, looks like we got an error: {{error.message}}</h3> -->
             <!-- Project card -->
             <v-card v-if="project">
               <v-card-title>
@@ -18,7 +17,7 @@
                     Live Demo
                   </a>
                 <v-spacer></v-spacer>
-                <v-icon @click="goToPrevPage" color="info" large>arrow_back</v-icon>
+                <v-icon title='previous page' @click="goToPrevPage" color="secondary" large>arrow_back</v-icon>
               </v-card-title>
 
               <v-tooltip right>
@@ -35,7 +34,7 @@
 
               <v-card-text>
                 <span v-for="(tag, index) in project.tags" :key="index">
-                  <v-chip class="mb-3" color="info" text-color="white">{{tag}}</v-chip>
+                  <v-chip class="mb-3" color="secondary" text-color="white">{{tag}}</v-chip>
                 </span>
                 <h3>{{project.description}}</h3>
               </v-card-text>
@@ -112,8 +111,9 @@ export default {
 }
 
 .code__button:hover{
-  background: #357edd;
+  background: #3eCF8E;
   color: white;
+  transform: translateY(-1px);
 }
 
 .code__button span {

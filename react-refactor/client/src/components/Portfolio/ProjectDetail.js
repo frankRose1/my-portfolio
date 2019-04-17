@@ -41,6 +41,7 @@ const ProjectDetail = ({ classes, match }) => {
                       className={classes.projectLink}
                       href={project.githubLink}
                       target='_blank'
+                      rel='noopener noreferrer'
                     >
                       <span>
                         <i className='devicon-github-plain github' />
@@ -53,6 +54,7 @@ const ProjectDetail = ({ classes, match }) => {
                       className={classes.projectLink}
                       href={project.demoLink}
                       target='_blank'
+                      rel='noopener noreferrer'
                     >
                       <span>
                         <i className='fas fa-desktop' />

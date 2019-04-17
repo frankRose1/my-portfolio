@@ -20,10 +20,10 @@ export default {
   font-size: 10px;
   position: relative;
   text-indent: -9999em;
-  border-top: 1.1em solid rgba(203, 56, 55, 0.2);
-  border-right: 1.1em solid rgba(203, 56, 55, 0.2);
-  border-bottom: 1.1em solid rgba(203, 56, 55, 0.2);
-  border-left: 1.1em solid #cb3837;
+  border-top: 1.1em solid rgba(103, 114, 229, 0.2);
+  border-right: 1.1em solid rgba(103, 114, 229, 0.2);
+  border-bottom: 1.1em solid rgba(103, 114, 229, 0.2);
+  border-left: 1.1em solid #6772E5;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);

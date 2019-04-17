@@ -1,5 +1,19 @@
 import { gql } from 'apollo-boost';
 
+export const INFINITE_SCROLL_PROJECTS_QUERY = gql`
+  query infiniteScrollProjectsQuery($pageSize: Int!, $pageNum: Int!) {
+    infiniteScrollProjects(pageSize: $pageSize, pageNum: $pageNum) {
+      hasMore
+      projects {
+        _id
+        title
+        imageUrl
+        description
+      }
+    }
+  }
+`;
+
 export const SEARCH_PROJECTS_QUERY = gql`
   query searchProjectsQuery($searchTerm: String) {
     searchProjects(searchTerm: $searchTerm) {
@@ -28,18 +42,18 @@ export const PROJECT_DETAIL_QUERY = gql`
 
 export const SEND_EMAIL_MUTATION = gql`
   mutation sendEmailMutation(
-    $email: String!
-    $name: String!
+    $senderEmail: String!
+    $senderName: String!
     $subject: String!
     $comments: String!
-    $phone: String
+    $senderPhone: String
   ) {
     sendEmail(
-      email: $email
-      name: $name
+      senderEmail: $senderEmail
+      senderName: $senderName
       subject: $subject
       comments: $comments
-      phone: $phone
+      senderPhone: $senderPhone
     ) {
       message
     }

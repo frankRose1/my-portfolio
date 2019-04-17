@@ -5,19 +5,20 @@ import 'vuetify/dist/vuetify.min.css';
 Vue.use(Vuetify, {
   iconfont: 'md',
   theme: {
-    primary: '#cb3837',
-    secondary: '#F25F5C',
+    primary: '#6772E5',
+    secondary: '#408AF8',
     error: '#722530',
     warning: '#FFCF56',
     info: '#357edd',
-    accent: '#f09233'
+    accent: '#3eCF8E',
+    light: '#F6F9FC',
+    dark: '#6B7C93'
   }
 });
 
-// original theme
-// primary: '#5E977B',
-// secondary: '#80CFA9',
-// error: '#722530',
-// warning: '#FFCF56',
-// info: '#B2CEDE',
-// accent: '#F25F5C'
+// primary: '#cb3837',
+// secondary: '#F25F5C',
+//  error: '#722530',
+//  warning: '#FFCF56',
+// info: '#357edd',
+// accent: '#f09233'

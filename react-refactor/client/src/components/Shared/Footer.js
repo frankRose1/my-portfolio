@@ -36,7 +36,12 @@ const Footer = ({ classes }) => {
                 <i className={`${link.iconClasses} ${classes.icon}`} />
               </Link>
             ) : (
-              <a className={classes.link} href={link.url} target='_blank'>
+              <a
+                className={classes.link}
+                href={link.url}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <i className={`${link.iconClasses} ${classes.icon}`} />
               </a>
             )}

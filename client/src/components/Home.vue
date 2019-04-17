@@ -3,12 +3,12 @@
   <div>
     <section id="hero__cover">
       <vue-particles
-        color="#F25F5C"
+        color="#408AF8"
         :particleOpacity="0.8"
         :particlesNumber="100"
         shapeType="circle"
         :particleSize="4"
-        linesColor="#F25F5C"
+        linesColor="#408AF8"
         :lineLinked="false"
         :moveSpeed="3"
         :hoverEffect="true"
@@ -34,7 +34,7 @@
 
       <div id="about__row">
         <p class="about__card about__card1">
-          Hello world, I'm Frank! I'm a full-stack JavaScript developer looking to apply my knowledge to create awesome applications. In college I actually studied accounting, but I fell in love with coding! Ever since I created my first app I knew web development was a field I 
+          Hello world, I'm Frank! I'm a junior full-stack developer looking to apply my knowledge to create awesome applications. In college I actually studied accounting, but I fell in love with coding! Ever since I created my first app I knew web development was a field I 
           wanted to pursue and I only wish I had tried it sooner! It's such a satisfying feeling to invision something you want to build and 
           then make it come to life with code.
         </p>
@@ -175,11 +175,11 @@ export default {
 }
 
 .about__card1 {
-  border-top: 10px solid #357edd;
+  border-top: 10px solid #3eCF8E;
 }
 
 .about__card2 {
-  border-top: 10px solid #f09233;
+  border-top: 10px solid #408AF8;
 }
 
 @media (min-width: 768px){
